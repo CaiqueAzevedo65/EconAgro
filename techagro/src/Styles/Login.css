@@ -37,11 +37,17 @@
 .form-header {
     margin-bottom: 2rem;
     text-align: center;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente */
 }
 
 .form-header h1 {
     font-size: 2rem;
     color: #333;
+}
+
+.title h1 {
+    margin-left: 65px; /* Remove a margem padrão do <h1> */
 }
 
 /* Inputs */
@@ -117,6 +123,7 @@
 .continue-button button {
     background-color: var(--color-green);
     color: var(--color-light);
+    margin-bottom: 10px;
 }
 
 .continue-button button:hover {
