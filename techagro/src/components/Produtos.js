@@ -61,7 +61,7 @@ const allProducts = {
                   <h4 className="product-title">{product.name}</h4>
                   <span style={{ color: '#17a354' }}>{product.price}</span>
                   <div className="ms-4">
-                    <a href="" className="botaofaleco btn btn-success ms-5 mt-3">Comprar</a>
+                    <a href="" className="botaofaleco">Comprar</a>
                   </div>
                 </div>
               </div>

@@ -112,9 +112,30 @@
   
 .card-body {
     padding: 10px;
+    display: flex; /* Ativa o Flexbox */
+    flex-direction: column; /* Organiza os itens na vertical */
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    justify-content: space-between; /* Distribui o conteúdo de maneira uniforme */
+    text-align: center; /* Garante que o conteúdo de texto também seja centralizado */
+}
+
+.botaofaleco {
+    margin-top: 15px;
+    background-color: #17a354;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block; /* Garante que o botão se comporte como um bloco inline */
     text-align: center;
+    width: auto; /* Ajusta para o tamanho do conteúdo */
+    margin-left: auto; /* Garante que o botão fique à direita do contêiner */
+    margin-right: auto; /* Garante que o botão fique à esquerda do contêiner */
 }
   
+.botaofaleco:hover {
+    background-color: #128a41;
+}
+
 .product-title {
     font-size: 1rem;
     font-weight: bold;
@@ -126,15 +147,5 @@
     color: #17a354;
 }
   
-.botaofaleco {
-    margin-top: 15px;
-    background-color: #17a354;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-}
-  
-.botaofaleco:hover {
-    background-color: #128a41;
-}
+
   
