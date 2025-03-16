@@ -13,14 +13,15 @@ function Rotas() {
     return (
         <BrowserRouter>
             <Header />
-            
-            <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/" element={<Categorias />} />
-                <Route path="/cadastro" element={<Cadastro />} />
-                <Route path="/carrinho" element={<Carrinho />} />
-                <Route path="/talktous" element={<Contato />} />
-            </Routes>
+            <div className="main-content">
+                <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/" element={<Categorias />} />
+                    <Route path="/cadastro" element={<Cadastro />} />
+                    <Route path="/carrinho" element={<Carrinho />} />
+                    <Route path="/talktous" element={<Contato />} />
+                </Routes>
+            </div>
             <Footer />
         </BrowserRouter>
     );

@@ -1,6 +1,11 @@
 .conteudo-container {
     text-align: center;
     margin-top: 50px;
+    height: 100%;
+    flex:1;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column; /* Organiza os elementos verticalmente */
 }
 
 .voltar-button {
@@ -10,7 +15,8 @@
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 30px;
+    width: auto; /* Garante que o botão não ocupe toda a largura */
+    align-self: center; /* Alinha o botão ao centro */
 }
 
 .voltar-button:hover {
