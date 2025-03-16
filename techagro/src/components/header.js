@@ -70,4 +70,4 @@ function Header() {
   );
 }
 
-export default Header; // Exporta o componente Header
+export default Header; // Exporta o componente Heade
