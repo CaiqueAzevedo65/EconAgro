@@ -1,0 +1,29 @@
+:root {
+    --color-green: #17A354;
+    --color-light: #ffffff;
+    --font-body: "Quicksand", sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: #f8f9fa;
+}
+
+.bg-green {
+    background-color: var(--color-green);
+}
+
+.form-container {
+    width: 80%;
+    max-width: 900px;
+    background: var(--color-light);
+}
+
+.btn-success {
+    background-color: var(--color-green);
+    border: none;
+}
+
+.btn-success:hover {
+    background-color: #1ab65e;
+}

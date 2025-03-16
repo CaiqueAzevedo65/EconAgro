@@ -1,0 +1,17 @@
+.conteudo-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.voltar-button {
+    background-color: #17A354;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.voltar-button:hover {
+    background-color: #1ab65e;
+}

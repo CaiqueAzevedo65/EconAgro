@@ -1,0 +1,129 @@
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Variáveis globais */
+:root {
+    --color-green: #17A354;
+    --color-light: #ffffff;
+    --font-body: "Quicksand", sans-serif;
+}
+
+/* Estilização do cabeçalho */
+.cabeçalho {
+    width: 100%;
+    background-color: var(--color-green);
+}
+
+/* Navbar superior (Criar Conta, Entrar e Carrinho) */
+.cabeçalho3 {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2%; /* Adiciona margem de 2% para afastar da borda direita */
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-item .nav-link {
+    color: var(--color-light);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Nome do site (EconAgro) */
+.Nome_site {
+    font-size: xx-large;
+    font-weight: bold;
+    color: var(--color-light);
+    margin-left: 5%; /* Alinha EconAgro à esquerda */
+    margin-right: 15px; /* Pequeno espaço entre "EconAgro" e a barra de pesquisa */
+    white-space: nowrap;
+}
+
+/* Barra de pesquisa */
+.search {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    width: 65%; /* Aumentei a largura da barra de pesquisa */
+    max-width: 900px; /* Define um limite para não ficar exagerado em telas grandes */
+    border-radius: 20px;
+    padding: 5px 15px;
+    color: #4b4b4b;
+    margin-left: 10px; /* Pequeno espaço entre "EconAgro" e a barra de pesquisa */
+}
+
+#searchinput {
+    padding: 10px;
+    border: none;
+    background-color: #ffffff;
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+}
+
+.search label i {
+    color: #4b4b4b;
+    cursor: pointer;
+    padding-left: 10px;
+}
+
+/* Navbar inferior (Links de navegação) */
+.cabeçalho2 {
+    width: 100%;
+    padding: 10px 0;
+    background-color: var(--color-green);
+}
+
+.navbar-expand-lg {
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-nav.mx-auto {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item {
+    list-style: none;
+}
+
+.nav-item .nav-link {
+    color: var(--color-light);
+    text-decoration: none;
+    font-size: 16px;
+}
+
+/* Responsividade */
+@media screen and (max-width: 992px) {
+    .Nome_site {
+        margin-left: 2%;
+    }
+    .search {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .Nome_site {
+        font-size: large;
+        margin-left: 2%;
+    }
+    .search {
+        width: 85%;
+    }
+    .navbar-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+}

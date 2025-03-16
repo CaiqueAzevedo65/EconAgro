@@ -1,0 +1,47 @@
+/* Estilo do contêiner principal */
+.mensagem-enviada {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 50px auto;
+  }
+  
+  /* Estilização do título */
+  .mensagem-enviada h2 {
+    font-size: 28px;
+    color: #198754;
+    font-weight: bold;
+  }
+  
+  /* Texto informativo */
+  .mensagem-enviada p {
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+    line-height: 1.5;
+  }
+  
+  /* Botão de voltar */
+  .mensagem-enviada .btn-return {
+    margin-top: 30px;
+    background-color: #198754;
+    color: white;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .mensagem-enviada .btn-return:hover {
+    background-color: #145c41;
+  }
+  
+  .mensagem-enviada .btn-return:focus {
+    outline: none;
+  }
+  

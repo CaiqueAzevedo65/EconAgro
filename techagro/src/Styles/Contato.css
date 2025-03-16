@@ -1,0 +1,73 @@
+/* Contêiner principal do formulário de contato */
+.contato-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.contato-container h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #198754;
+  margin-bottom: 15px;
+}
+
+/* Parágrafo abaixo do título */
+.contato-container p {
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Estilização dos inputs e textarea */
+.contato-container input,
+.contato-container textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Estilo do botão */
+.contato-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #198754;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.contato-container button:hover {
+  background-color: #145c41;
+}
+
+/* Feedback de validação */
+.contato-container .valid-feedback,
+.contato-container .invalid-feedback {
+  display: none;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.contato-container input:valid + .valid-feedback,
+.contato-container textarea:valid + .valid-feedback {
+  display: block;
+  color: green;
+}
+
+.contato-container input:invalid + .invalid-feedback,
+.contato-container textarea:invalid + .invalid-feedback {
+  display: block;
+  color: red;
+}
