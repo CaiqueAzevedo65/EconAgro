@@ -8,7 +8,9 @@ import imagem6 from '../assets/imagem6.jpg';
 import imagem7 from '../assets/imagem7.jpg';
 import imagem8 from '../assets/imagem8.jpg';
 
+ // Componente Categorias recebe a função onSelectCategory como prop
  function Categorias({ onSelectCategory }) {
+    // Definindo as categorias com seus respectivos nomes e imagens
   const categories = [
     { name: 'Carnes', img: imagem1 },
     { name: 'Ovos', img: imagem2 },
@@ -131,4 +133,4 @@ import imagem8 from '../assets/imagem8.jpg';
 }
 
 
-export default Categorias;
+export default Categorias; // Exporta o componente Categorias

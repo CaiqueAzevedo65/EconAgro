@@ -1,20 +1,28 @@
-import React, { useState } from "react";
-import MensagemEnviada from "./MensagemEnviada";
-import '../Styles/Contato.css';
+import React, { useState } from "react"; // Importa React e o hook useState
+import MensagemEnviada from "./MensagemEnviada"; // Importa o componente MensagemEnviada para exibir após o envio
+import '../Styles/Contato.css'; // Importa o arquivo de estilos CSS específico para a página de contato
 
+// Componente Contato que renderiza o formulário de contato
 const Contato = () => {
+  // Estado para controlar se o formulário foi enviado
   const [formEnviado, setFormEnviado] = useState(false);
+  
+  // Estado para armazenar os dados do formulário
   const [formData, setFormData] = useState({
     nome: "",
     email: "",
     mensagem: "",
   });
+  
+  // Estado para armazenar os erros de validação de cada campo
   const [errors, setErrors] = useState({
     nome: "",
     email: "",
     mensagem: "",
   });
 
+
+  // Função chamada sempre que um campo do formulário é alterado
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -23,52 +31,62 @@ const Contato = () => {
     validateField(name, value);
   };
 
+  // Função que valida cada campo individualmente
   const validateField = (name, value) => {
     let error = "";
 
+    // Valida se o campo está vazio
     if (!value.trim()) {
       error = "Este campo é obrigatório.";
     } else {
+      // Validação do nome (pelo menos 3 caracteres)
       if (name === "nome" && value.length < 3) {
         error = "O nome deve ter pelo menos 3 caracteres.";
       }
+      // Validação do e-mail (formato válido)
       if (name === "email" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
         error = "Insira um e-mail válido.";
       }
+      // Validação da mensagem (pelo menos 10 caracteres)
       if (name === "mensagem" && value.length < 10) {
         error = "A mensagem deve ter pelo menos 10 caracteres.";
       }
     }
-
+    
+    // Atualiza os erros de validação
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: error,
     }));
   };
 
+  // Função para validar o formulário completo
   const validateForm = () => {
     let valid = true;
     let newErrors = {};
 
+    // Valida todos os campos do formulário
     Object.keys(formData).forEach((field) => {
       validateField(field, formData[field]);
       if (!formData[field].trim() || errors[field]) {
-        valid = false;
+        valid = false; // Se algum campo for inválido, o formulário não é válido
       }
       newErrors[field] = errors[field] || (!formData[field].trim() ? "Este campo é obrigatório." : "");
     });
 
-    setErrors(newErrors);
-    return valid;
+    setErrors(newErrors); // Atualiza os erros
+    return valid; // Retorna se o formulário é válido ou não
   };
 
+  // Função chamada ao enviar o formulário
   const handleSubmit = (event) => {
-    event.preventDefault();
-    if (validateForm()) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+    if (validateForm()) { // Se o formulário for válido, marca como enviado
       setFormEnviado(true);
     }
   };
 
+  // Se o formulário foi enviado, renderiza a tela de mensagem enviada
   if (formEnviado) {
     return <MensagemEnviada />;
   }
@@ -137,4 +155,4 @@ const Contato = () => {
   );
 };
 
-export default Contato;
+export default Contato; // Exporta o componente Contato

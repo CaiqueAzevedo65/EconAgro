@@ -1,8 +1,9 @@
 import React from 'react';
 import '../Styles/Header.css'; // Importação do CSS corrigida
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faLeaf, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Importa o componente FontAwesomeIcon
+import { faCartShopping, faLeaf, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'; // Importa ícones específicos do FontAwesome
 
+// Componente Header que renderiza o cabeçalho da aplicação
 function Header() {
   return (
     <div className="cabeçalho container-fluid bg-green">
@@ -69,4 +70,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Header; // Exporta o componente Header

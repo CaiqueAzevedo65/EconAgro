@@ -5,6 +5,7 @@ import imagem3 from '../assets/proteina_de_soja_texturizada.webp';
 import imagem4 from '../assets/milho5kg.jpg';
 import imagem5 from '../assets/café_arabica.webp';
 
+// Objeto contendo a lista de produtos organizados por categorias
 const allProducts = {
   'Grãos': [
     { name: 'Arroz 7 grãos Ecobio 500g', price: 'R$ 17,40', img: imagem2 },
@@ -13,10 +14,11 @@ const allProducts = {
     { name: 'Grãos de café arabica', price: 'R$ 87,40', img: imagem5 },
   ],
 };
-
+ // Componente funcional Produtos que recebe a categoria como propriedade
  function Produtos({ category }) {
+  // Se nenhuma categoria for fornecida, o componente não renderiza nada
   if (!category) return null;
-
+  // Obtém os produtos da categoria selecionada ou um array vazio caso não existam produtos
   const products = allProducts[category] || [];
 
   return (
@@ -77,4 +79,4 @@ const allProducts = {
   );
 }
 
-export default Produtos;
+export default Produtos; // Exporta o componente Produtos
