@@ -20,7 +20,7 @@ function Login() {
               <input id="email" type="email" name="email" placeholder="Digite seu e-mail" />
               <FontAwesomeIcon icon={faExclamationCircle} className="error-icon" />
               <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-              <small>Mensagem de erro</small>
+              <small>E-mail inválido</small>
             </div>
 
             <div className="linput-box">
@@ -28,7 +28,7 @@ function Login() {
               <input id="password" type="password" name="password" placeholder="Digite sua senha" />
               <FontAwesomeIcon icon={faExclamationCircle} className="error-icon" />
               <FontAwesomeIcon icon={faCheckCircle} className="success-icon" />
-              <small>Mensagem de erro</small>
+              <small>Senha incorreta</small>
             </div>
           </div>
 
