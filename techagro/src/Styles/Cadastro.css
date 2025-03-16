@@ -1,29 +1,544 @@
-:root {
+* {
+    box-sizing: border-box;
+}
+
+/* Variáveis CSS */
+:root{
     --color-green: #17A354;
     --color-light: #ffffff;
     --font-body: "Quicksand", sans-serif;
 }
 
+/* Index */
+ 
 body {
     font-family: var(--font-body);
-    background-color: #f8f9fa;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.bg-green {
-    background-color: var(--color-green);
+.bg-green {background-color: var(--color-green);}
+ 
+.navbar-toggler {
+    box-shadow: none !important;
+    border-color: var(--color-light);
 }
 
-.form-container {
-    width: 80%;
-    max-width: 900px;
-    background: var(--color-light);
+.search {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    width: 700px;
+    margin: 2px auto;
+    border-radius: 20px;
+    padding: 5px 10px;
+    color: #4b4b4b;
 }
 
-.btn-success {
-    background-color: var(--color-green);
+#searchinput {
+    padding: 8px;
     border: none;
+    background-color: #ffffff;
+    width: 100%;
+    outline: none;
 }
 
-.btn-success:hover {
+
+.Nome_site {
+    font-size: xx-large;
+}
+
+.nav-link {
+    color: var(--color-light);
+}
+
+/* form */
+
+.bform {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #dee2e6;
+}
+
+.cform {
+    width: 80%;
+    height: 80vh;
+    display: flex;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .212);
+}
+
+.formulario {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #ffffff;
+    padding: 3rem;
+}
+
+.form-header {
+    margin-bottom: 3rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-button {
+    display: flex;
+    align-items: center;
+}
+
+.login-button button {
+    border: none;
+    background-color: #17A354;
+    padding: 0.4rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-button button:hover {
     background-color: #1ab65e;
+}
+
+.login-button button a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.form-header h1::after {
+    content: '';
+    display: block;
+    width: 5rem;
+    height: 0.3rem;
+    background-color: #17A354;
+    margin: 0 auto;
+    position: absolute;
+    border-radius: 10px;
+}
+
+.inputs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 1rem 0;
+
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
+    position: relative;
+}
+
+.input-box input {
+    margin: 0.6rem 0;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+}
+
+.input-box input:hover {
+    background-color: #eeeeee75;
+}
+
+.input-box input:focus-visible {
+    outline: 1px solid #17A354;
+}
+
+.input-box label,
+.gender-title h6 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #000000c0;
+}
+.input-box input::placeholder {
+    color: #000000be;
+}
+
+.input-box i {
+    position: absolute;
+    right: 10px;
+    top: 50%; 
+    transform: translateY(-50%);
+    color: #ccc;
+    visibility: hidden;
+}
+
+.input-box small {
+    visibility: hidden
+}
+
+.gender-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.62rem;
+    padding: 0 0.5rem;
+}
+
+.gender-input {
+    display: flex;
+    align-items: center;
+}
+
+.gender-input input {
+    margin-right: 0.35rem;
+}
+
+.gender-input label {
+    font-size: 0.81rem;
+    font-weight: 600;
+    color: #000000c0;
+}
+
+.continue-button button {
+    width: 100%;
+    margin-top: 2.5rem;
+    border: none;
+    background-color: #17A354;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--color-light);
+}
+
+.continue-button button:hover {
+    background-color: #1ab65e;
+}
+
+.continue-button button a {
+    text-decoration: none;
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: var(--color-light);
+}
+
+@media screen and (max-width: 1330px) {
+    .formulario {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1064px) {
+    .formulario {
+        width: 90%;
+        height: auto;
+    }
+    .inputs {
+        flex-direction: column;
+        overflow-y: scroll;
+        flex-wrap: nowrap;
+        max-height: 10rem;
+        padding-right: 5rem;
+    }
+    .gender-inputs {
+        margin-top: 2rem;
+    }
+    .gender-group {
+        flex-direction: column;
+    }
+    .gender-input {
+        margin-top: 0.5rem;
+    }
+}
+
+input[type="radio"] {
+    -webkit-appearance: none; 
+    -moz-appearance: none;    
+    appearance: none;         
+    
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+    position: relative;
+  }
+
+  input[type="radio"]:checked {
+    background-color: #4CAF50;
+    border-color: #4CAF50;     
+  }
+
+  /* Login */
+
+  .linput-box {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.1rem;
+    position: relative;
+  }
+
+  .linput-box input {
+    margin: 0.6rem 0;
+    padding: 0.8rem 1.2rem;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px #0000001c;
+}
+
+.linput-box input:hover {
+    background-color: #eeeeee75;
+}
+
+.linput-box input:focus-visible {
+    outline: 1px solid #17A354;
+}
+
+.linput-box label,
+.gender-title h6 {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #000000c0;
+}
+.linput-box input::placeholder {
+    color: #000000be;
+}
+
+.lformulario {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #ffffff;
+    padding: 3rem;
+}
+
+.cadastro-button button {
+    width: 100%;
+    margin-top: 0.8rem;
+    border: none;
+    background-color: #fff;
+    padding: 0.62rem;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--color-green);
+}
+
+.cadastro-button button:hover {
+    background-color: #91f3bb;
+}
+
+.cadastro-button button a {
+    text-decoration: none;
+    font-size: 0.93rem;
+    font-weight: 500;
+    color: var(--color-light);
+}
+
+/* JavaScript */
+.input-box.success input {
+    border-color: #2ecc71;
+  }
+  
+  .input-box.error input {
+    border-color: #e74c3c;
+  }
+  
+  .input-box.success i.fa-check-circle {
+    color: #2ecc71;
+    visibility: visible;
+  }
+  
+  .input-box.error i.fa-exclamation-circle {
+    color: #e74c3c;
+    visibility: visible;
+  }
+  
+  .input-box.error small {
+    visibility: visible;
+    color: #e74c3c;
+  }
+
+  .linput-box i {
+    position: absolute;
+    right: 10px;
+    top: 50%; 
+    transform: translateY(-50%);
+    color: #ccc;
+    visibility: hidden;
+  }
+
+  .linput-box small {
+    visibility: hidden
+  }
+
+
+  .linput-box.success input {
+    border-color: #2ecc71;
+  }
+  
+  .linput-box.error input {
+    border-color: #e74c3c;
+  }
+  
+  .linput-box.success i.fa-check-circle {
+    color: #2ecc71;
+    visibility: visible;
+  }
+  
+  .linput-box.error i.fa-exclamation-circle {
+    color: #e74c3c;
+    visibility: visible;
+  }
+  
+  .linput-box.error small {
+    visibility: visible;
+    color: #e74c3c;
+  }
+
+  .botaofaleco {
+    background-color: #17A354;
+  }
+
+  #logincadastro {
+    color: #fff;
+    height: 32px;
+  }
+
+  .main {
+    height: 300px;
+  }
+
+    /*sprint5*/
+
+    .pagcontent {
+        height: 100%;
+    }
+    
+    .categories {
+        width: 82%;
+        justify-self: center;
+        height: 216px;
+        width: 1160px;
+    }
+    
+    .categories2 {
+        height: 216px;
+        width: 1128px;
+    }
+    
+    .categoryspace {
+        height: 100px;
+        width: 282px;
+    }
+    
+    .category {
+        height: 100px;
+        width: 266px;
+        position: relative; /* Necessário para o posicionamento do texto */
+    }
+    
+    .category img {
+        height: 100px;
+        width: 266px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+    
+    .category img {
+        transition: transform 0.2s;
+    }
+    
+    .category img:hover {
+        transform: scale(1.10);
+    }
+    
+    .names {
+        position: absolute;
+        top: 50%; 
+        left: 50%; 
+        transform: translate(-50%, -50%);
+        color: white; 
+        margin: 0; 
+        font-size: 1.2rem; 
+        text-align: center;
+    }
+    
+    .space {
+        height: 30px;
+    }
+    
+    .spacexl {
+        height: 300px;
+    }
+    
+    .products {
+        width: 82%;
+        justify-self: center;
+        height: 216px;
+        width: 1160px;
+    }
+    
+    .shops {
+        width: 82%;
+        justify-self: center;
+        height: 60px;
+        width: 1160px;
+    }
+    
+    .brand {
+        height: 60px;
+        width: 60px;
+    }
+    
+    .brand img {
+        height: 60px;
+        width: 60px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+    
+    .namebrand {
+        height: 60px;
+        width: 1040px;
+    }
+    
+    .shop {
+        height: 22.5px;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .shoprt {
+        height: 20px;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .km {
+        font-size: small;
+    }
+    
+    .heart {
+        font-size: x-large;
+        color: #4CAF50;
+    }
+    
+    .image {
+        display: flex;
+        justify-content: center; 
+        align-items: center; 
+        height: 240px; 
+        width: 100%; 
+    }
+    
+    .image img {
+        max-width: 100%; 
+        max-height: 80%;
+        border-radius: 15px;
+    }
+    
+    .product-title {
+        font-size: 15px;
+    }
 }
