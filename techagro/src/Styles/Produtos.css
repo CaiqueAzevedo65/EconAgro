@@ -130,6 +130,8 @@
     width: auto; /* Ajusta para o tamanho do conteúdo */
     margin-left: auto; /* Garante que o botão fique à direita do contêiner */
     margin-right: auto; /* Garante que o botão fique à esquerda do contêiner */
+    text-decoration: none; /* Remove o sublinhado */
+    margin-left: -20px; 
 }
   
 .botaofaleco:hover {
