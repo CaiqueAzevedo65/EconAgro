@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../assets/logo.png';
+import '../Styles/Produtos.css';
 import imagem2 from '../assets/arroz_7_graos.jpg';
 import imagem3 from '../assets/proteina_de_soja_texturizada.webp';
 import imagem4 from '../assets/milho5kg.jpg';
@@ -49,7 +50,7 @@ const allProducts = {
       </div>
 
       <div className="products mt-5">
-        <div className="products2 row">
+        <div className="products2">
           {products.map((product, idx) => (
             <div className="col-3" key={idx}>
               <div className="card shadow-sm border-light rounded">

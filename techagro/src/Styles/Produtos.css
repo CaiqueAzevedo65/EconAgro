@@ -1,0 +1,140 @@
+.pagcontent {
+    height: 100%;
+}
+
+.space {
+    height: 30px;
+}
+
+.spacexl {
+    height: 300px;
+}
+
+.products {
+    width: 82%;
+    justify-self: center;
+    height: 216px;
+    width: 1000px;
+}
+
+
+.shops {
+    width: 82%;
+    justify-self: center;
+    height: 60px;
+    width: 1160px;
+}
+
+.brand {
+    height: 60px;
+    width: 60px;
+}
+
+.brand img {
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.namebrand {
+    height: 60px;
+    width: 1040px;
+}
+
+.shop {
+    height: 22.5px;
+    padding: 0;
+    margin: 0;
+}
+
+.shoprt {
+    height: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.km {
+    font-size: small;
+}
+
+.heart {
+    font-size: x-large;
+    color: #4CAF50;
+}
+
+
+
+
+
+
+
+
+
+.products2 {
+    display: flex;
+    flex-wrap: nowrap; /* Impede que os itens quebrem para uma nova linha */
+    justify-content: space-between; /* Espaçamento entre os itens */
+    gap: 20px;
+    padding: 20px 0;
+    width: 100%; /* Certifique-se de que ocupa toda a largura disponível */
+}
+
+  
+.card {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    max-width: 250px; /* Limita a largura do card */
+    width: 100%;
+}
+  
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+  
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 240px;
+    width: 100%;
+}
+  
+.image img {
+    max-width: 100%;
+    max-height: 80%;
+    border-radius: 10px;
+}
+  
+.card-body {
+    padding: 10px;
+    text-align: center;
+}
+  
+.product-title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+  
+.product-price {
+    font-size: 1.2rem;
+    color: #17a354;
+}
+  
+.botaofaleco {
+    margin-top: 15px;
+    background-color: #17a354;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+  
+.botaofaleco:hover {
+    background-color: #128a41;
+}
+  
