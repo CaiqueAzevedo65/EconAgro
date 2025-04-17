@@ -40,12 +40,12 @@
 
 /* Nome do site (EconAgro) */
 .Nome_site {
-    font-size: xx-large;
+    font-size: x-large;
     font-weight: bold;
     color: var(--color-light);
-    margin-left: 5%; /* Alinha EconAgro à esquerda */
-    margin-right: 15px; /* Pequeno espaço entre "EconAgro" e a barra de pesquisa */
+    margin-right: auto; /* Faz com que o nome do site fique à esquerda */
     white-space: nowrap;
+    text-decoration: none;
 }
 
 /* Barra de pesquisa */

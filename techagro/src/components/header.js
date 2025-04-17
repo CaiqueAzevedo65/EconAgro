@@ -9,6 +9,9 @@ function Header() {
     <div className="cabeçalho container-fluid bg-green">
       {/* Navbar superior */}
       <div className="cabeçalho3 container-fluid">
+        <a className="Nome_site text-light" href="#">
+              <FontAwesomeIcon icon={faLeaf} /> EconAgro
+            </a>
         <nav className="navbar navbar-expand-lg">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
@@ -29,10 +32,7 @@ function Header() {
       {/* Nome do site e barra de pesquisa */}
       <nav className="navbar navbar-expand-lg">
         <div className="container d-flex align-items-center">
-          <a className="Nome_site navbar-brand text-light" href="#">
-            <FontAwesomeIcon icon={faLeaf} /> EconAgro
-          </a>
-          <div className="search">
+          <div className="search mx-auto">
             <input type="text" id="searchinput" placeholder="Pesquisar" />
             <label htmlFor="searchinput">
               <FontAwesomeIcon icon={faMagnifyingGlass} />
