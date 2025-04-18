@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from '../pages/Login';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import Inicio from '../pages/Categorias';
 import Cadastro from '../pages/Cadastro';
 import Carrinho from '../pages/Carrinho';
 import Contato from '../components/Contato';

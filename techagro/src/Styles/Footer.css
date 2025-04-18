@@ -8,7 +8,6 @@
 
 .footer{
     color: #fff; /* Cor do texto */
-    text-align: center;
     padding: 20px 0; /* Reduzido para diminuir a altura do footer */
     margin-top: auto; /* Ajuste a margem superior conforme necessário */
     font-size: 0.9rem; /* Tamanho da fonte reduzido */
