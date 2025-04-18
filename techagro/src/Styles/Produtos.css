@@ -7,14 +7,7 @@
 }
 
 .spacexl {
-    height: 300px;
-}
-
-.products {
-    width: 82%;
-    justify-self: center;
-    height: 216px;
-    width: 1000px;
+    height: 100px;
 }
 
 
@@ -63,24 +56,17 @@
     color: #4CAF50;
 }
 
-
-
-
-
-
-
-
-
-.products2 {
+.products {
     display: flex;
-    flex-wrap: nowrap; /* Impede que os itens quebrem para uma nova linha */
-    justify-content: space-between; /* Espaçamento entre os itens */
-    gap: 20px;
-    padding: 20px 0;
-    width: 100%; /* Certifique-se de que ocupa toda a largura disponível */
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    gap: 25px;
+    padding: 20px;
+    width: 82%; /* Garante que o contêiner ocupe toda a largura */
+    margin: 0 auto; /* Centraliza o contêiner na página */
+    box-sizing: border-box; /* Inclui padding e bordas no cálculo do tamanho */
 }
 
-  
 .card {
     background-color: white;
     border-radius: 15px;
@@ -88,14 +74,14 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
     max-width: 250px; /* Limita a largura do card */
-    width: 100%;
+    margin: 0 auto;
 }
-  
+
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
-  
+
 .image {
     display: flex;
     justify-content: center;
@@ -103,13 +89,13 @@
     height: 240px;
     width: 100%;
 }
-  
+
 .image img {
-    max-width: 100%;
+    max-width: 90%;
     max-height: 80%;
     border-radius: 10px;
 }
-  
+
 .card-body {
     padding: 10px;
     display: flex; /* Ativa o Flexbox */
@@ -133,7 +119,7 @@
     text-decoration: none; /* Remove o sublinhado */
     margin-left: -20px; 
 }
-  
+
 .botaofaleco:hover {
     background-color: #128a41;
 }
@@ -143,11 +129,18 @@
     font-weight: bold;
     color: #333;
 }
-  
+
 .product-price {
     font-size: 1.2rem;
     color: #17a354;
 }
-  
 
-  
+@media screen and (max-width: 768px) {
+    .products {
+        justify-content: center; /* Centraliza os itens em telas menores */
+    }
+
+    .card {
+        max-width: 100%; /* Garante que os cartões ocupem toda a largura disponível */
+    }
+}
