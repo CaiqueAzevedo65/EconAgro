@@ -61,7 +61,7 @@ function Header() {
               <a className="nav-link" href="/talktous">Ajuda/Fale Conosco</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#sobre">Sobre Nós</a>
+              <a className="nav-link" href="/aboutus">Sobre Nós</a>
             </li>
           </ul>
         </nav>

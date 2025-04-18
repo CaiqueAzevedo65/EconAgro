@@ -9,6 +9,7 @@ import Cadastro from '../pages/Cadastro';
 import Carrinho from '../pages/Carrinho';
 import Contato from '../components/Contato';
 import Categorias from '../pages/Categorias';
+import SobreNos from '../components/SobreNos';
 function Rotas() {
     return (
         <BrowserRouter>
@@ -20,6 +21,7 @@ function Rotas() {
                     <Route path="/cadastro" element={<Cadastro />} />
                     <Route path="/carrinho" element={<Carrinho />} />
                     <Route path="/talktous" element={<Contato />} />
+                    <Route path="/aboutus" element={<SobreNos />} />
                 </Routes>
             </div>
             <Footer />
