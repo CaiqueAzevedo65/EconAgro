@@ -27,3 +27,17 @@ body {
 .btn-success:hover {
     background-color: #1ab65e;
 }
+
+#logincadastro {
+    text-decoration: none;
+}
+
+/* white-space: nowrap; */
+
+.gender-group {
+    white-space: nowrap;
+}
+
+.continue-button{
+    margin-top: 15px;
+}

@@ -29,7 +29,7 @@ const Cadastro = () => {
         <form className="form" onSubmit={handleSubmit}>
           <div className="form-header">
             <h1 className="title">Cadastre-se</h1>
-            <button id="logincadastro" type="button">Entrar</button>
+            <a id="logincadastro" href="/login">Entrar</a>
           </div>
 
           <div className="inputs">
