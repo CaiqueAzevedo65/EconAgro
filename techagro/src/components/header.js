@@ -9,10 +9,24 @@ function Header() {
     <div className="cabeçalho container-fluid bg-green">
       {/* Navbar superior */}
       <div className="cabeçalho3 container-fluid">
-        <a className="Nome_site text-light" href="#">
-              <FontAwesomeIcon icon={faLeaf} /> EconAgro
-            </a>
+        {/* Logo */}
+        <a className="Nome_site text-light" href="/">
+          <FontAwesomeIcon icon={faLeaf} /> EconAgro
+        </a>
+        
+        {/* Barra de pesquisa */}
+        <div className="container d-flex align-items-center">
+          {/* Barra de pesquisa */}
+          <div className="search">
+            <input type="text" id="searchinput" placeholder="Pesquisar" />
+            <label htmlFor="searchinput">
+              <FontAwesomeIcon icon={faMagnifyingGlass} />
+            </label> 
+          </div>
+        </div>
+
         <nav className="navbar navbar-expand-lg">
+          {/* Botões */}
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <a className="nav-link" href="/cadastro">Criar Conta</a>
@@ -29,21 +43,10 @@ function Header() {
         </nav>
       </div>
 
-      {/* Nome do site e barra de pesquisa */}
-      <nav className="navbar navbar-expand-lg">
-        <div className="container d-flex align-items-center">
-          <div className="search mx-auto">
-            <input type="text" id="searchinput" placeholder="Pesquisar" />
-            <label htmlFor="searchinput">
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </label> 
-          </div>
-        </div>
-      </nav>
-
       {/* Navbar inferior */}
       <div className="cabeçalho2 container-fluid">
         <nav className="navbar navbar-expand-lg">
+          {/* Botões */}
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
               <a className="nav-link" href="/">Início</a>

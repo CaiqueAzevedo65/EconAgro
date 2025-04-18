@@ -20,22 +20,23 @@
 
 /* Navbar superior (Criar Conta, Entrar e Carrinho) */
 .cabeçalho3 {
-    width: 100%;
-    padding: 10px 0;
     display: flex;
-    justify-content: flex-end;
-    margin-right: 2%; /* Adiciona margem de 2% para afastar da borda direita */
+    align-items: center;
+    justify-content: space-between; /* Espaça os elementos (logo, barra de pesquisa e botões) */
+    padding: 10px 0;
 }
 
 .navbar-nav {
     display: flex;
     gap: 15px;
+    margin-left: auto;
 }
 
 .nav-item .nav-link {
     color: var(--color-light);
     text-decoration: none;
     font-size: 14px;
+    white-space: nowrap;
 }
 
 /* Nome do site (EconAgro) */
@@ -52,14 +53,14 @@
 .search {
     display: flex;
     align-items: center;
+    justify-content: center; /* Centraliza o conteúdo interno */
     border: 1px solid #ccc;
     background-color: #ffffff;
-    width: 65%; /* Aumentei a largura da barra de pesquisa */
-    max-width: 900px; /* Define um limite para não ficar exagerado em telas grandes */
+    width: 65%; /* Ajuste a largura da barra de pesquisa */
+    max-width: 900px; /* Define um limite para telas grandes */
     border-radius: 20px;
     padding: 5px 15px;
-    color: #4b4b4b;
-    margin-left: 10px; /* Pequeno espaço entre "EconAgro" e a barra de pesquisa */
+    margin: 0 auto; 
 }
 
 #searchinput {
@@ -87,6 +88,7 @@
 .navbar-expand-lg {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .navbar-nav.mx-auto {
