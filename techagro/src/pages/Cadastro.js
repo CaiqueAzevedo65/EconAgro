@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 const Cadastro = () => {
   const [formData, setFormData] = useState({
-    firstname: "",
+    name: "",
     lastname: "",
     email: "",
     number: "",
@@ -33,7 +33,7 @@ const Cadastro = () => {
           </div>
 
           <div className="inputs">
-            {["firstname", "lastname", "email", "number", "password", "cpassword"].map((field, index) => (
+            {["name", "lastname", "email", "number", "password", "cpassword"].map((field, index) => (
               <div className="input-box" key={index}>
                 <label htmlFor={field}>
                   {field === "cpassword" ? "Confirmar Senha" : field.charAt(0).toUpperCase() + field.slice(1)}
