@@ -1,12 +1,17 @@
+:root {
+    --color-green: #17A354;
+    --color-light: #ffffff;
+    --font-body: "Lora", serif;
+}
+
 .sobre-nos {
     padding: 2rem;
-    text-align: center;
     font-family: var(--font-body);
     color: #333;
 }
 
-.sobre-nos h1 {
-    font-size: 2.5rem;
+.sobre-nos h2 {
+    font-size: 2rem;
     color: var(--color-green);
     margin-bottom: 1rem;
 }
