@@ -1,7 +1,7 @@
 :root {
     --color-green: #17A354;
     --color-light: #ffffff;
-    --font-body: "Lora", serif;
+    --font-body: "Quicksand", serif;
 }
 
 .sobre-nos {
@@ -20,4 +20,11 @@
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 1rem;
+}
+
+.logo-text {
+    font-size: xxx-large;
+    font-weight: bold;
+    color: var(--color-light);
+    white-space: nowrap;
 }

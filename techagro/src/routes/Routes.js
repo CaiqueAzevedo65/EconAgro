@@ -13,7 +13,7 @@ function Rotas() {
     return (
         <BrowserRouter>
             <Header />
-            <div className="main-content">
+            <div className="main-content" style={{ flexGrow: 1 }}>
                 <Routes>
                     <Route path="/login" element={<Login />} />
                     <Route path="/" element={<Categorias />} />

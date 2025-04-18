@@ -6,7 +6,6 @@ export default function Conteudo({ categoria, voltar }) {
   return (
     <div className="conteudo-container">
       <h2>{categoria}</h2>
-      <p>Aqui está o conteúdo relacionado a {categoria}.</p>
 
 
       <Produtos category={categoria} />
