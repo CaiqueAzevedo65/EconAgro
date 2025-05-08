@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../Styles/Cadastro.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 const Cadastro = () => {
   const [formData, setFormData] = useState({
@@ -29,7 +30,9 @@ const Cadastro = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-header">
             <h1>Cadastre-se</h1>
-            <a id="logincadastro" href="/login">Já tem uma conta? Faça login</a>
+            <Link to="/login" id="logincadastro" style={{ textDecoration: 'none' }}>
+              Já tem uma conta? Faça login
+            </Link>
           </div>
 
           <div className="form-row">
