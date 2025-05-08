@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../Styles/Login.css"; // Importação do CSS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExclamationCircle, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 function Login() {
   // Definir os estados para email, senha e mensagens de erro
@@ -82,7 +83,9 @@ function Login() {
           </div>
 
           <div className="cadastro-button">
-            <button id="cadastro-btn" type="button">Criar conta</button>
+            <Link to="/cadastro" style={{ textDecoration: 'none', width: '100%' }}>
+              <button id="cadastro-btn" type="button">Criar conta</button>
+            </Link>
           </div>
         </form>
       </div>
