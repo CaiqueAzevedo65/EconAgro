@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../Styles/Cadastro.css"; // Mantendo os estilos filtrados
+import "../Styles/Cadastro.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Cadastro = () => {
@@ -25,37 +25,93 @@ const Cadastro = () => {
 
   return (
     <div className="bform">
-      <div className="formulario shadow-lg">
-        <form className="form" onSubmit={handleSubmit}>
+      <div className="form-container">
+        <form onSubmit={handleSubmit}>
           <div className="form-header">
-            <h1 className="title">Cadastre-se</h1>
-            <a id="logincadastro" href="/login">Entrar</a>
+            <h1>Cadastre-se</h1>
+            <a id="logincadastro" href="/login">Já tem uma conta? Faça login</a>
           </div>
 
-          <div className="inputs">
-            {["name", "lastname", "email", "number", "password", "cpassword"].map((field, index) => (
-              <div className="input-box" key={index}>
-                <label htmlFor={field}>
-                  {field === "cpassword" ? "Confirmar Senha" : field.charAt(0).toUpperCase() + field.slice(1)}
-                </label>
-                <input
-                  id={field}
-                  type={field.includes("password") ? "password" : field === "email" ? "email" : "text"}
-                  name={field}
-                  className="form-control"
-                  placeholder={`Digite seu ${field === "cpassword" ? "senha novamente" : field}`}
-                  value={formData[field]}
-                  onChange={handleChange}
-                />
-              </div>
-            ))}
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="name">Nome</label>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                placeholder="Digite seu nome"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="lastname">Sobrenome</label>
+              <input
+                id="lastname"
+                type="text"
+                name="lastname"
+                placeholder="Digite seu sobrenome"
+                value={formData.lastname}
+                onChange={handleChange}
+              />
+            </div>
           </div>
 
-          <div className="gender-inputs">
-            <h6>Gênero</h6>
-            <div className="gender-group">
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="email">E-mail</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Digite seu e-mail"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="number">Telefone</label>
+              <input
+                id="number"
+                type="tel"
+                name="number"
+                placeholder="Digite seu telefone"
+                value={formData.number}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="password">Senha</label>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="Digite sua senha"
+                value={formData.password}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="cpassword">Confirmar Senha</label>
+              <input
+                id="cpassword"
+                type="password"
+                name="cpassword"
+                placeholder="Confirme sua senha"
+                value={formData.cpassword}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="gender-group">
+            <label>Gênero:</label>
+            <div className="gender-options">
               {["Masculino", "Feminino", "Outros", "Prefiro não dizer"].map((gender, index) => (
-                <div className="gender-input" key={index}>
+                <div key={index}>
                   <input
                     type="radio"
                     id={gender.toLowerCase()}
@@ -70,7 +126,7 @@ const Cadastro = () => {
           </div>
 
           <div className="continue-button">
-            <button type="submit" className="btn btn-success w-100">Continuar</button>
+            <button type="submit">Continuar</button>
           </div>
         </form>
       </div>
