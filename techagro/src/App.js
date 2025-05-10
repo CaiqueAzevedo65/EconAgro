@@ -1,9 +1,10 @@
-import './App.css';
+import React from 'react';
 import Routes from './routes/Routes';
+import './App.css';
 
 function App() {
   return (
-    <div className="App" style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+    <div className="App">
       <Routes />
     </div>
   );

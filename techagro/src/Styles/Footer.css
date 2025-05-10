@@ -1,19 +1,18 @@
-/* 🟢 Estilização do Cadastro */
+/* 🟢 Estilização do Footer */
 :root {
     --color-green: #28a745;
     --color-light: #ffffff;
     --font-body: "Quicksand", sans-serif;
 }
 
-
-.footer{
-    color: #fff; /* Cor do texto */
-    padding: 20px; /* Reduzido para diminuir a altura do footer */
-    font-size: 0.9rem; /* Tamanho da fonte reduzido */
-    bottom: 0; /* Coloca o footer no fundo */
-    width: 100%; /* Garante que ocupe toda a largura */
+.footer {
+    color: #fff;
+    padding: 20px;
+    font-size: 0.9rem;
+    width: 100%;
+    background-color: #333; /* Adicionando cor de fundo para melhor visibilidade */
+    margin-top: auto; /* Empurra o footer para baixo */
 }
-
 
 /* Fundo */
 .bform {
