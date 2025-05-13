@@ -16,7 +16,7 @@ export default function Categorias() {
   const categories = [
     { name: 'Carnes', img: imagem1 },
     { name: 'Ovos', img: imagem2 },
-    { name: 'Leite', img: imagem3 },
+    { name: 'Laticínios', img: imagem3 },
     { name: 'Grãos', img: imagem4 },
     { name: 'Frutas', img: imagem5 },
     { name: 'Verduras', img: imagem6 },
