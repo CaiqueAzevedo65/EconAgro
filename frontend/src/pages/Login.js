@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Styles/Login.css"; // Importação do CSS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExclamationCircle, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
 function Login() {

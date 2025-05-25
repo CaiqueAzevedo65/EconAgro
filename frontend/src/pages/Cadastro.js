@@ -111,18 +111,20 @@ const Cadastro = () => {
           </div>
 
           <div className="gender-group">
-            <label>Gênero:</label>
+            <label htmlFor="gender-masculino">Gênero:</label>
             <div className="gender-options">
               {["Masculino", "Feminino", "Outros", "Prefiro não dizer"].map((gender, index) => (
                 <div key={index}>
                   <input
                     type="radio"
-                    id={gender.toLowerCase()}
+                    id={`gender-${gender.toLowerCase().replace(/\s+/g, '-')}`}
                     name="gender"
                     value={gender}
                     onChange={handleChange}
                   />
-                  <label htmlFor={gender.toLowerCase()}>{gender}</label>
+                  <label htmlFor={`gender-${gender.toLowerCase().replace(/\s+/g, '-')}`}>
+                    {gender}
+                  </label>
                 </div>
               ))}
             </div>

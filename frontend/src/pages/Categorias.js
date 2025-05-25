@@ -37,10 +37,19 @@ export default function Categorias() {
             className="categoria-item"
             key={category.name}
             onClick={() => setCategoriaSelecionada(category.name)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setCategoriaSelecionada(category.name);
+              }
+            }}
+            role="button"
+            tabIndex={0}
+            aria-label={`Ver produtos de ${category.name}`}
           >
             <div className="categoria-content">
               <p className="categoria-name">{category.name}</p>
-              <img src={category.img} alt={category.name} className="categoria-img" />
+              <img src={category.img} alt="" className="categoria-img" />
             </div>
           </div>
         ))}
