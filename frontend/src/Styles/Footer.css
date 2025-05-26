@@ -9,6 +9,13 @@
     margin-top: auto; /* Empurra o footer para baixo */
 }
 
+/* Garante que o texto dentro do footer seja branco */
+.footer,
+.footer p,
+.footer a {
+    color: #fff !important;
+}
+
 /* Fundo */
 .bform {
     display: flex;
