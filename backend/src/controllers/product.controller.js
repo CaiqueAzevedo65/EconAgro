@@ -1,11 +1,10 @@
 const { StatusCodes } = require('http-status-codes');
-const { Product } = require('../models');
+const { Product, Category } = require('../models');
 const { 
   NotFoundError, 
   BadRequestError,
   ValidationError 
-} = require('../utils/errors');  // Importe os erros necessários
-
+} = require('../utils/errors');
 
 /**
  * @swagger
@@ -52,13 +51,22 @@ class ProductController {
         where.category = category;
       }
       
-      const products = await Product.findAll({ where });
-      
-      res.status(StatusCodes.OK).json({
-        success: true,
-        count: products.length,
-        data: products
+      const products = await Product.findAll({ 
+        where,
+        include: [{
+          model: Category,
+          as: 'category',
+          required: !!category
+        }]
       });
+      
+      // Mapeia os produtos para o formato esperado pelo frontend
+      const formattedProducts = products.map(product => ({
+        ...product.get({ plain: true }),
+        img: product.imageUrl // Mapeia imageUrl para img
+      }));
+      
+      res.status(StatusCodes.OK).json(formattedProducts);
     } catch (error) {
       next(error);
     }
@@ -90,19 +98,24 @@ class ProductController {
   async getById(req, res, next) {
     try {
       const { id } = req.params;
-      const product = await Product.findByPk(id);
+      const product = await Product.findByPk(id, {
+        include: [{
+          model: Category,
+          as: 'category'
+        }]
+      });
       
       if (!product) {
-        return res.status(StatusCodes.NOT_FOUND).json({
-          success: false,
-          message: 'Produto não encontrado'
-        });
+        throw new NotFoundError('Produto não encontrado');
       }
 
-      res.status(StatusCodes.OK).json({
-        success: true,
-        data: product
-      });
+      // Formata o produto para o formato esperado pelo frontend
+      const formattedProduct = {
+        ...product.get({ plain: true }),
+        img: product.imageUrl // Mapeia imageUrl para img
+      };
+
+      res.status(StatusCodes.OK).json(formattedProduct);
     } catch (error) {
       next(error);
     }
@@ -216,6 +229,7 @@ class ProductController {
   async delete(req, res, next) {
     try {
       const { id } = req.params;
+      
       const deleted = await Product.destroy({
         where: { id }
       });
@@ -225,6 +239,61 @@ class ProductController {
       }
 
       res.status(StatusCodes.NO_CONTENT).send();
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * @swagger
+   * /products/category/{categoryName}:
+   *   get:
+   *     summary: Busca produtos por nome da categoria
+   *     tags: [Produtos]
+   *     parameters:
+   *       - in: path
+   *         name: categoryName
+   *         required: true
+   *         schema:
+   *           type: string
+   *         description: Nome da categoria
+   *     responses:
+   *       200:
+   *         description: Lista de produtos da categoria
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 success:
+   *                   type: boolean
+   *                 count:
+   *                   type: integer
+   *                 data:
+   *                   type: array
+   *                   items:
+   *                     $ref: '#/components/schemas/Product'
+   */
+  async getByCategory(req, res, next) {
+    try {
+      const { categoryName } = req.params;
+      
+      const products = await Product.findAll({
+        include: [{
+          model: Category,
+          as: 'category',
+          where: { name: categoryName },
+          required: true
+        }]
+      });
+      
+      // Mapeia os produtos para o formato esperado pelo frontend
+      const formattedProducts = products.map(product => ({
+        ...product.get({ plain: true }),
+        img: product.imageUrl // Mapeia imageUrl para img
+      }));
+      
+      res.status(StatusCodes.OK).json(formattedProducts);
     } catch (error) {
       next(error);
     }
