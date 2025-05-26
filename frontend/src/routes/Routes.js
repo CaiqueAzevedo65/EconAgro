@@ -5,10 +5,10 @@ import { CartProvider } from '../context/CartContext';
 import Login from '../pages/Login';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import Cadastro from '../pages/Cadastro';
+import Cadastro from '../pages/Register'; // Atualizado
 import Cart from '../components/Cart';
 import Contato from '../components/Contato';
-import Categorias from '../pages/Categorias';
+import Categorias from '../pages/Categories'; // Atualizado
 import SobreNos from '../components/SobreNos';
 import Produtos from '../components/Produtos';
 
