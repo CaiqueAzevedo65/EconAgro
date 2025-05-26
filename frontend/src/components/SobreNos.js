@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../Styles/SobreNos.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSeedling, faChartLine, faHandsHelping } from '@fortawesome/free-solid-svg-icons';
@@ -140,7 +141,7 @@ const SobreNos = () => {
                 <div className="text-center my-5">
                     <h2>Pronto para transformar sua produção agrícola?</h2>
                     <p className="lead">Entre em contato e descubra como podemos ajudar seu negócio a crescer</p>
-                    <button className="btn btn-primary btn-lg mt-3">Fale Conosco</button>
+                    <Link to="/talktous" className="btn btn-primary btn-lg mt-3">Fale Conosco</Link>
                 </div>
             </section>
         </div>

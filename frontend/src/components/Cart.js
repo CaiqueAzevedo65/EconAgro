@@ -27,7 +27,7 @@ function Cart() {
                 />
                 <div className="cart-item-details">
                   <h3>{item.name}</h3>
-                  <p>{item.price}</p>
+                  <p>R$ {Number(item.price).toFixed(2).replace('.', ',')}</p>
                   <div className="quantity-controls">
                     <button 
                       onClick={() => updateQuantity(item.name, item.quantity - 1)}

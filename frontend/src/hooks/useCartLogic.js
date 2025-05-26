@@ -6,7 +6,12 @@ export const useCartLogic = () => {
 
   const calculateTotal = useCallback((cart) => {
     const subtotal = cart.reduce((sum, item) => {
-      const price = parseFloat(item.price.replace('R$ ', '').replace(',', '.'));
+      // Se o preço for string, converte para número
+      // Se já for número, usa diretamente
+      const price = typeof item.price === 'string' 
+        ? parseFloat(item.price.replace('R$ ', '').replace(',', '.'))
+        : Number(item.price);
+      
       return sum + (price * item.quantity);
     }, 0);
     
