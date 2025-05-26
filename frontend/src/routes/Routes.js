@@ -25,9 +25,9 @@ function Rotas() {
                         <Route path="/carrinho" element={<Cart />} />
                         <Route path="/talktous" element={<Contato />} />
                         <Route path="/aboutus" element={<SobreNos />} />
-                        <Route path="/graos" element={<Produtos category="Grãos" />} />
-                        <Route path="/frutas" element={<Produtos category="Frutas" />} />
-                        <Route path="/legumes" element={<Produtos category="Legumes" />} />
+                        <Route path="/graos" element={<Categorias />} />
+                        <Route path="/frutas" element={<Categorias />} />
+                        <Route path="/legumes" element={<Categorias />} />
                     </Routes>
                 </div>
                 <Footer />
