@@ -1,15 +1,4 @@
-:root {
-    --color-primary: #17A354;
-    --color-primary-light: #4caf50;
-    --color-secondary: #2e7d32;
-    --color-light: #ffffff;
-    --color-text: #333333;
-    --color-text-light: #666666;
-    --color-bg-light: #f9f9f9;
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --transition: all 0.3s ease;
-}
+/* Variáveis estão definidas no global.css */
 
 .about-hero {
     padding: 4rem 2rem 2rem;

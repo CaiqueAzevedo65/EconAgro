@@ -1,9 +1,4 @@
 /* 🟢 Estilização do Footer */
-:root {
-    --color-green: #28a745;
-    --color-light: #ffffff;
-    --font-body: "Quicksand", sans-serif;
-}
 
 .footer {
     color: #fff;
@@ -49,7 +44,7 @@
 #logincadastro {
     border: none;
     background-color: transparent;
-    color: var(--color-green);
+    color: var(--color-primary);
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;

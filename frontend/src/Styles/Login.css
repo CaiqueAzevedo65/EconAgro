@@ -1,21 +1,4 @@
-/* Reset básico */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/* Variáveis globais */
-:root {
-    --color-green: #17A354;
-    --color-light: #ffffff;
-    --font-body: "Quicksand", sans-serif;
-    --color-gray: #dee2e6;
-    --color-dark: #333;
-    --color-success: #2ecc71;
-    --color-error: #e74c3c;
-    --shadow-md: 5px 5px 10px rgba(0, 0, 0, 0.2);
-}
+/* Reset e variáveis estão definidos no global.css */
 
 /* Estilização do formulário */
 .bform {
@@ -83,7 +66,7 @@
 }
 
 .linput-box input:focus-visible {
-    outline: 1px solid var(--color-green);
+    outline: 1px solid var(--color-primary);
 }
 
 /* Ícones de erro e sucesso */
@@ -122,7 +105,7 @@
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
-    background-color: var(--color-green);
+    background-color: var(--color-primary);
     color: var(--color-light);
     margin-bottom: 10px;
 }
@@ -134,13 +117,13 @@
 .cadastro-button button {
     width: 100%;
     padding: 0.8rem;
-    border: 1px solid var(--color-green);
+    border: 1px solid var(--color-primary);
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
     background-color: var(--color-light);
-    color: var(--color-green);
+    color: var(--color-primary);
 }
 
 .cadastro-button button:hover {

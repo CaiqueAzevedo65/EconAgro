@@ -1,21 +1,9 @@
-/* Reset básico */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-/* Variáveis globais */
-:root {
-    --color-green: #17A354;
-    --color-light: #ffffff;
-    --font-body: "Quicksand", sans-serif;
-}
+/* Reset e variáveis estão definidos no global.css */
 
 /* Estilização do cabeçalho */
 .cabeçalho {
     width: 100%;
-    background-color: var(--color-green);
+    background-color: var(--color-primary);
 }
 
 /* Navbar superior (Criar Conta, Entrar e Carrinho) */
@@ -82,7 +70,7 @@
 .cabeçalho2 {
     width: 100%;
     padding: 10px 0;
-    background-color: var(--color-green);
+    background-color: var(--color-primary);
 }
 
 .navbar-expand-lg {

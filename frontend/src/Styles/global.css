@@ -7,15 +7,31 @@
 
 /* Variáveis globais */
 :root {
-    --color-green: #17A354;
+    /* Cores */
+    --color-primary: #17A354;
+    --color-primary-light: #4caf50;
+    --color-secondary: #2e7d32;
     --color-light: #ffffff;
     --color-dark: #333333;
+    --color-text: #333333;
+    --color-text-light: #666666;
+    --color-bg-light: #f9f9f9;
     --color-error: #e74c3c;
     --color-success: #2ecc71;
     --color-gray: #dee2e6;
+    
+    /* Tipografia */
     --font-body: "Quicksand", sans-serif;
-    --shadow-sm: 1px 1px 6px rgba(0, 0, 0, 0.1);
-    --shadow-md: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    
+    /* Sombras */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    /* Transições */
+    --transition: all 0.3s ease;
+    
+    /* Compatibilidade com códigos antigos */
+    --color-green: var(--color-primary);
 }
 
 /* Estilos de formulário comuns */

@@ -1,8 +1,4 @@
-:root {
-    --color-green: #17A354;
-    --color-light: #ffffff;
-    --font-body: "Quicksand", sans-serif;
-}
+/* Reset e variáveis estão definidos no global.css */
 
 body {
     font-family: var(--font-body);
@@ -10,7 +6,7 @@ body {
 }
 
 .bg-green {
-    background-color: var(--color-green);
+    background-color: var(--color-primary);
 }
 
 .form-container {
@@ -59,8 +55,8 @@ body {
 
 .form-group input:focus,
 .form-group select:focus {
-    outline: 1px solid var(--color-green);
-    border-color: var(--color-green);
+    outline: 1px solid var(--color-primary);
+    border-color: var(--color-primary);
 }
 
 .gender-group {
@@ -89,7 +85,7 @@ body {
     padding: 0.8rem;
     border: none;
     border-radius: 5px;
-    background-color: var(--color-green);
+    background-color: var(--color-primary);
     color: var(--color-light);
     font-size: 1rem;
     font-weight: bold;
@@ -105,7 +101,7 @@ body {
     display: block;
     text-align: center;
     margin-top: 1rem;
-    color: var(--color-green);
+    color: var(--color-primary);
     text-decoration: none;
 }
 
