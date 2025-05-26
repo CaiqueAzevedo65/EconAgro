@@ -34,10 +34,10 @@ function Header() {
           {/* Botões */}
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/cadastro">Criar Conta</a>
+              <Link to="/cadastro" className="nav-link">Criar Conta</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/login">Entrar</a>
+              <Link to="/login" className="nav-link">Entrar</Link>
             </li>
             <li className="nav-item">
               <Link to="/carrinho" className="nav-link">
@@ -55,22 +55,22 @@ function Header() {
           {/* Botões */}
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
-              <a className="nav-link" href="/">Início</a>
+              <Link to="/" className="nav-link">Início</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#conta">Minha Conta</a>
+              <Link to="#conta" className="nav-link">Minha Conta</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#favoritos">Favoritos</a>
+              <Link to="#favoritos" className="nav-link">Favoritos</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#historico">Histórico</a>
+              <Link to="#historico" className="nav-link">Histórico</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/talktous">Ajuda/Fale Conosco</a>
+              <Link to="/talktous" className="nav-link">Ajuda/Fale Conosco</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/aboutus">Sobre Nós</a>
+              <Link to="/aboutus" className="nav-link">Sobre Nós</Link>
             </li>
           </ul>
         </nav>
