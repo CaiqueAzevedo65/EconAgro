@@ -41,8 +41,20 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
       validate: {
-        isUrl: {
-          msg: 'A URL da imagem deve ser válida'
+        isUrlOrPath(value) {
+          if (value === null || value === undefined || value === '') return;
+          
+          if (typeof value !== 'string') {
+            throw new Error('A URL da imagem deve ser um texto');
+          }
+          
+          // Aceita URLs válidas ou caminhos que comecem com /uploads/
+          const isUrl = /^https?:\/\/.+\..+/.test(value);
+          const isPath = value.startsWith('/uploads/');
+          
+          if (!isUrl && !isPath) {
+            throw new Error('A URL da imagem deve ser válida ou começar com /uploads/');
+          }
         }
       }
     },
