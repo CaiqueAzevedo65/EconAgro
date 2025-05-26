@@ -6,22 +6,22 @@ import { faSeedling, faChartLine, faHandsHelping } from '@fortawesome/free-solid
 const SobreNos = () => {
     const teamMembers = [
         {
-            name: 'Carlos Silva',
-            role: 'CEO & Fundador',
-            image: 'https://randomuser.me/api/portraits/men/32.jpg',
-            bio: 'Engenheiro Agrônomo com mais de 15 anos de experiência em gestão agrícola.'
+            name: 'Caique Carnargo Azevedo',
+            role: 'Developer Full Stack, Analista de Sistemas e Cientista de Dados',
+            // image: 'https://randomuser.me/api/portraits/men/32.jpg',
+            bio: 'Especialista em desenvolvimento de soluções completas e análise de dados para otimização de processos agrícolas.'
         },
         {
-            name: 'Ana Santos',
-            role: 'CTO',
-            image: 'https://randomuser.me/api/portraits/women/44.jpg',
-            bio: 'Especialista em tecnologia agrícola e análise de dados.'
+            name: 'Viviane Aparecida Reis',
+            role: 'Developer Full Stack e CEO',
+            // image: 'https://randomuser.me/api/portraits/women/44.jpg',
+            bio: 'Lidera nossa equipe com visão estratégica e expertise técnica em desenvolvimento de sistemas para o agronegócio.'
         },
         {
-            name: 'Pedro Oliveira',
-            role: 'Diretor Comercial',
-            image: 'https://randomuser.me/api/portraits/men/22.jpg',
-            bio: 'Experiente em negócios e desenvolvimento de mercado no agronegócio.'
+            name: 'Gabriel Furtado de Souza Carvalho',
+            role: 'Developer Full Stack, Analista de Sistemas e CTO',
+            // image: 'https://randomuser.me/api/portraits/men/22.jpg',
+            bio: 'Responsável pela arquitetura de sistemas e inovação tecnológica, integrando soluções para o mercado agrícola.'
         }
     ];
 
