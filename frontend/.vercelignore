@@ -1,11 +1,2 @@
-*
-!frontend/
-!vercel.json
-!frontend/package.json
-!frontend/package-lock.json
-!frontend/public/
-!frontend/public/**/*
-!frontend/src/
-!frontend/src/**/*
 node_modules
 build
