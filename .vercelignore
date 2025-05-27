@@ -5,4 +5,5 @@
 !frontend/package-lock.json
 !frontend/public/
 !frontend/src/
+!frontend/build/
 node_modules
