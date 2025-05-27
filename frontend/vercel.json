@@ -2,13 +2,10 @@
   "version": 2,
   "builds": [
     {
-      "src": "frontend/package.json",
+      "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "build",
-        "installCommand": "cd frontend && npm install",
-        "buildCommand": "cd frontend && CI= npm run build",
-        "outputDirectory": "frontend/build"
+        "distDir": "build"
       }
     }
   ],
