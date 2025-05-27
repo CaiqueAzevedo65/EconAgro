@@ -58,15 +58,6 @@ function Header() {
               <Link to="/" className="nav-link">Início</Link>
             </li>
             <li className="nav-item">
-              <Link to="#conta" className="nav-link">Minha Conta</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="#favoritos" className="nav-link">Favoritos</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="#historico" className="nav-link">Histórico</Link>
-            </li>
-            <li className="nav-item">
               <Link to="/talktous" className="nav-link">Ajuda/Fale Conosco</Link>
             </li>
             <li className="nav-item">
