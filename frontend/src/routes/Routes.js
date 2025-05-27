@@ -10,7 +10,6 @@ import Cart from '../components/Cart';
 import Contato from '../components/Contato';
 import Categorias from '../pages/Categories'; // Atualizado
 import SobreNos from '../components/SobreNos';
-import Produtos from '../components/Produtos';
 
 function Rotas() {
     return (
