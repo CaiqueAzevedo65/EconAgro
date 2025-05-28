@@ -3,6 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
+    // Primeiro, crie a tabela sem a chave estrangeira
     await queryInterface.createTable('products', {
       id: {
         allowNull: false,
@@ -28,13 +29,8 @@ module.exports = {
       },
       category_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'categories',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT'
+        allowNull: false
+        // Removida a referência temporariamente
       },
       created_at: {
         allowNull: false,
@@ -50,13 +46,13 @@ module.exports = {
 
     // Adicionar índice para a chave estrangeira
     await queryInterface.addIndex('products', ['category_id'], {
-      name: 'products_category_id_index'
+      name: 'idx_products_category_id'
     });
   },
 
   async down(queryInterface, Sequelize) {
-    // Remover índice da chave estrangeira antes de remover a tabela
-    await queryInterface.removeIndex('products', 'products_category_id_index');
+    // Remover índice antes de remover a tabela
+    await queryInterface.removeIndex('products', 'idx_products_category_id');
     await queryInterface.dropTable('products');
   }
 };

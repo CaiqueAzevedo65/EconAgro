@@ -4,11 +4,12 @@ Backend da aplicação EconAgro, uma plataforma para gerenciamento de produtos a
 
 ## 🚀 Começando
 
-### Pré-requisitos
+### 🛠️ Pré-requisitos
 
 - Node.js (v14 ou superior)
 - npm ou yarn
-- SQLite (desenvolvimento) ou PostgreSQL (produção)
+- MySQL 5.7 ou superior
+- Servidor MySQL em execução
 
 ### Instalação
 
@@ -29,7 +30,20 @@ Backend da aplicação EconAgro, uma plataforma para gerenciamento de produtos a
    ```bash
    cp .env.example .env
    ```
-   Edite o arquivo `.env` com as configurações do seu ambiente.
+   
+   Edite o arquivo `.env` com as configurações do seu banco de dados MySQL:
+   ```
+   # Configurações do Banco de Dados
+   DB_USER=seu_usuario
+   DB_PASSWORD=sua_senha
+   DB_NAME=econagro_dev
+   DB_HOST=localhost
+   DB_PORT=3306
+   
+   # Outras configurações
+   NODE_ENV=development
+   PORT=3001
+   ```
 
 4. Inicie o servidor de desenvolvimento:
    ```bash
@@ -44,9 +58,39 @@ Backend da aplicação EconAgro, uma plataforma para gerenciamento de produtos a
 
 - `npm run dev` - Inicia o servidor em modo de desenvolvimento
 - `npm test` - Executa os testes
-- `npm run lint` - Executa o linter
+- `npm run lint` - Verifica problemas de estilo de código
+- `npm run lint:fix` - Corrige automaticamente problemas de estilo
 - `npm run migrate` - Executa as migrações do banco de dados
+- `npm run migrate:reset` - Reseta e executa todas as migrações novamente
+- `npm run migrate:undo` - Desfaz a última migração
 - `npm run seed` - Popula o banco de dados com dados de exemplo
+
+## 🗄️ Configuração do Banco de Dados
+
+O projeto está configurado para usar o MySQL. Certifique-se de ter um servidor MySQL em execução e um banco de dados criado antes de iniciar a aplicação.
+
+### Criando o banco de dados
+
+```sql
+CREATE DATABASE econagro_dev CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
+
+### Variáveis de Ambiente
+
+Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
+
+```
+# Configurações do Banco de Dados
+DB_USER=seu_usuario
+DB_PASSWORD=sua_senha
+DB_NAME=econagro_dev
+DB_HOST=localhost
+DB_PORT=3306
+
+# Outras configurações
+NODE_ENV=development
+PORT=3001
+```
 
 ## 📚 Documentação da API
 
