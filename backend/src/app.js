@@ -5,6 +5,7 @@ const path = require('path');
 const errorHandler = require('./middlewares/errorHandler');
 const routes = require('./routes');
 
+
 class App {
   constructor() {
     this.app = express();

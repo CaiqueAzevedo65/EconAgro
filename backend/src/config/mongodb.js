@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://econ_dev:1234@cluster0.fq2lvsm.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+    if (!process.env.MONGODB_URI) {
+      throw new Error('MONGODB_URI não está definida nas variáveis de ambiente');
+    }
+
+    const conn = await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
