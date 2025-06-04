@@ -1,5 +1,5 @@
 const { StatusCodes } = require('http-status-codes');
-const { Category } = require('../models');
+const Category = require('../models/category');
 const { 
   NotFoundError, 
   BadRequestError,
@@ -32,9 +32,7 @@ class CategoryController {
    */
   async getAll(req, res, next) {
     try {
-      const categories = await Category.findAll({
-        order: [['name', 'ASC']]
-      });
+      const categories = await Category.find({}).sort({ name: 1 });
       
       return res.status(StatusCodes.OK).json({
         success: true,
@@ -57,7 +55,7 @@ class CategoryController {
    *         name: id
    *         required: true
    *         schema:
-   *           type: integer
+   *           type: string
    *         description: ID da categoria
    *     responses:
    *       200:
@@ -72,9 +70,7 @@ class CategoryController {
   async getById(req, res, next) {
     try {
       const { id } = req.params;
-      const category = await Category.findByPk(id, {
-        include: ['products']
-      });
+      const category = await Category.findById(id).populate('products');
 
       if (!category) {
         throw new NotFoundError('Categoria não encontrada');
@@ -100,7 +96,7 @@ class CategoryController {
    *       content:
    *         application/json:
    *           schema:
-   *             $ref: '#/components/schemas/CategoryInput'
+   *             $ref: '#/components/schemas/Category'
    *     responses:
    *       201:
    *         description: Categoria criada com sucesso
@@ -113,21 +109,24 @@ class CategoryController {
    */
   async create(req, res, next) {
     try {
-      const { name } = req.body;
-
-      if (!name || name.trim().length < 2) {
-        throw new BadRequestError('O nome da categoria é obrigatório e deve ter pelo menos 2 caracteres');
-      }
-
-      const category = await Category.create({ name });
-
+      const { name, description } = req.body;
+      
+      const category = new Category({
+        name,
+        description
+      });
+      
+      await category.save();
+      
       return res.status(StatusCodes.CREATED).json({
         success: true,
         data: category
       });
     } catch (error) {
-      if (error.name === 'SequelizeUniqueConstraintError') {
-        next(new ValidationError('Já existe uma categoria com este nome'));
+      if (error.name === 'ValidationError') {
+        next(new ValidationError(error.message));
+      } else if (error.code === 11000) {
+        next(new BadRequestError('Já existe uma categoria com este nome'));
       } else {
         next(error);
       }
@@ -145,14 +144,14 @@ class CategoryController {
    *         name: id
    *         required: true
    *         schema:
-   *           type: integer
+   *           type: string
    *         description: ID da categoria
    *     requestBody:
    *       required: true
    *       content:
    *         application/json:
    *           schema:
-   *             $ref: '#/components/schemas/CategoryInput'
+   *             $ref: '#/components/schemas/Category'
    *     responses:
    *       200:
    *         description: Categoria atualizada com sucesso
@@ -168,27 +167,27 @@ class CategoryController {
   async update(req, res, next) {
     try {
       const { id } = req.params;
-      const { name } = req.body;
-
-      const category = await Category.findByPk(id);
+      const { name, description } = req.body;
+      
+      const category = await Category.findByIdAndUpdate(
+        id,
+        { name, description },
+        { new: true, runValidators: true }
+      );
+      
       if (!category) {
         throw new NotFoundError('Categoria não encontrada');
       }
-
-      if (!name || name.trim().length < 2) {
-        throw new BadRequestError('O nome da categoria é obrigatório e deve ter pelo menos 2 caracteres');
-      }
-
-      category.name = name;
-      await category.save();
-
+      
       return res.status(StatusCodes.OK).json({
         success: true,
         data: category
       });
     } catch (error) {
-      if (error.name === 'SequelizeUniqueConstraintError') {
-        next(new ValidationError('Já existe uma categoria com este nome'));
+      if (error.name === 'ValidationError') {
+        next(new ValidationError(error.message));
+      } else if (error.code === 11000) {
+        next(new BadRequestError('Já existe uma categoria com este nome'));
       } else {
         next(error);
       }
@@ -206,36 +205,33 @@ class CategoryController {
    *         name: id
    *         required: true
    *         schema:
-   *           type: integer
+   *           type: string
    *         description: ID da categoria
    *     responses:
    *       204:
    *         description: Categoria removida com sucesso
-   *       400:
-   *         description: Não é possível remover categorias com produtos associados
    *       404:
    *         description: Categoria não encontrada
+   *       400:
+   *         description: Não é possível remover categoria com produtos associados
    */
   async delete(req, res, next) {
     try {
       const { id } = req.params;
       
-      // Verificar se a categoria existe
-      const category = await Category.findByPk(id, {
-        include: ['products']
-      });
-
-      if (!category) {
+      // Verificar se existem produtos associados a esta categoria
+      const categoryWithProducts = await Category.findById(id).populate('products');
+      
+      if (!categoryWithProducts) {
         throw new NotFoundError('Categoria não encontrada');
       }
-
-      // Verificar se existem produtos associados
-      if (category.products && category.products.length > 0) {
-        throw new BadRequestError('Não é possível remover categorias com produtos associados');
+      
+      if (categoryWithProducts.products && categoryWithProducts.products.length > 0) {
+        throw new BadRequestError('Não é possível remover uma categoria com produtos associados');
       }
-
-      await category.destroy();
-
+      
+      await Category.findByIdAndDelete(id);
+      
       return res.status(StatusCodes.NO_CONTENT).send();
     } catch (error) {
       next(error);

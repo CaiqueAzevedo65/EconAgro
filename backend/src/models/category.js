@@ -1,38 +1,26 @@
-const { DataTypes } = require('sequelize');
+const mongoose = require('mongoose');
 
-module.exports = (sequelize) => {
-  const Category = sequelize.define('Category', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true
-    },
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true,
-      validate: {
-        notEmpty: {
-          msg: 'O nome da categoria é obrigatório'
-        },
-        len: {
-          args: [2, 50],
-          msg: 'O nome da categoria deve ter entre 2 e 50 caracteres'
-        }
-      }
-    }
-  }, {
-    tableName: 'categories',
-    timestamps: true,
-    underscored: true
-  });
+const categorySchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+    unique: true
+  },
+  description: {
+    type: String,
+    trim: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now
+  }
+}, {
+  timestamps: true
+});
 
-  Category.associate = (models) => {
-    Category.hasMany(models.Product, {
-      foreignKey: 'categoryId',
-      as: 'products'
-    });
-  };
-
-  return Category;
-};
+module.exports = mongoose.model('Category', categorySchema);
