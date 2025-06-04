@@ -36,20 +36,32 @@ EconAgro é uma plataforma web moderna desenvolvida para revolucionar a gestão 
 ## 🛠️ Tecnologias Utilizadas
 
 ### Backend
-- Node.js
-- Express.js
-- MongoDB (com Mongoose)
-- JWT para autenticação
-- Express Validator para validação
-- Morgan para logs
+- **Node.js** - Ambiente de execução JavaScript
+- **Express.js** - Framework web para Node.js
+- **MongoDB** - Banco de dados NoSQL
+- **Mongoose** - ODM para MongoDB
+- **JWT** - Autenticação via JSON Web Tokens
+- **Express Validator** - Validação de dados
+- **CORS** - Middleware para habilitar CORS
+- **Dotenv** - Gerenciamento de variáveis de ambiente
+- **Morgan** - Logger de requisições HTTP
+- **Moment Timezone** - Manipulação de datas e fusos horários
+- **HTTP Status Codes** - Constantes para códigos de status HTTP
 
 ### Frontend
-- React 18
-- React Router DOM
-- React Bootstrap 5
-- Font Awesome
-- Axios para requisições HTTP
-- Web Vitals para métricas
+- **React 18** - Biblioteca para construção de interfaces
+- **React Router DOM** - Roteamento na aplicação
+- **React Bootstrap 5** - Componentes de UI responsivos
+- **Font Awesome** - Ícones
+- **Axios** - Cliente HTTP para requisições à API
+- **Web Vitals** - Métricas de performance
+
+### Ferramentas de Desenvolvimento
+- **Nodemon** - Reinício automático do servidor em desenvolvimento
+- **ESLint** - Linter para padronização de código
+- **Prettier** - Formatador de código
+- **Jest** - Framework de testes
+- **Supertest** - Testes de integração HTTP
 
 ## 📋 Pré-requisitos
 
