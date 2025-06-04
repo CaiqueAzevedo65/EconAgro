@@ -1,108 +1,162 @@
 # EconAgro - Technology for Agribusiness 🌱
 
-EconAgro is a modern web platform developed to revolutionize agribusiness management, offering integrated technological solutions for rural producers.
+EconAgro é uma plataforma web moderna desenvolvida para revolucionar a gestão do agronegócio, oferecendo soluções tecnológicas integradas para produtores rurais.
 
-## 🚀 Features
+## 🚀 Recursos
 
-- Rural property management
-- Crop monitoring
-- Financial control
-- Agricultural data analysis
-- Custom reports
-- Responsive and intuitive interface
+- Gerenciamento de propriedades rurais
+- Monitoramento de safras
+- Controle financeiro
+- Análise de dados agrícolas
+- Relatórios personalizados
+- Interface responsiva e intuitiva
 
-## 🛠️ Technologies Used
+## 🏗️ Estrutura do Projeto
 
+```
+.
+├── backend/               # API RESTful
+│   ├── src/               # Código-fonte do backend
+│   │   ├── config/       # Configurações do servidor
+│   │   ├── controllers/  # Lógica dos controladores
+│   │   ├── models/       # Modelos de dados
+│   │   ├── routes/       # Definição de rotas
+│   │   └── server.js     # Ponto de entrada da aplicação
+│   └── uploads/          # Arquivos enviados
+│
+└── frontend/             # Aplicação React
+    ├── public/           # Arquivos estáticos
+    └── src/              # Código-fonte do frontend
+        ├── assets/       # Recursos estáticos (imagens, estilos)
+        ├── components/   # Componentes reutilizáveis
+        ├── pages/        # Páginas da aplicação
+        └── App.js        # Componente raiz
+```
+
+## 🛠️ Tecnologias Utilizadas
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB (com Mongoose)
+- JWT para autenticação
+- Express Validator para validação
+- Morgan para logs
+
+### Frontend
 - React 18
 - React Router DOM
-- Bootstrap 5
+- React Bootstrap 5
 - Font Awesome
-- Web Vitals
+- Axios para requisições HTTP
+- Web Vitals para métricas
 
-## 📋 Prerequisites
+## 📋 Pré-requisitos
 
-- Node.js (version 14 or higher)
-- npm (version 6 or higher)
+- Node.js (versão 14 ou superior)
+- npm (versão 6 ou superior)
+- MongoDB (local ou Atlas)
 
-## 🔧 Installation
+## 🔧 Instalação
 
-1. Clone the repository:
+### Backend
+
+1. Acesse o diretório do backend:
 ```bash
-git clone https://github.com/your-username/econagro.git
+cd backend
 ```
 
-2. Enter the project directory:
-```bash
-cd econagro
-```
-
-3. Install dependencies:
+2. Instale as dependências:
 ```bash
 npm install
 ```
 
-4. Start the development server:
+3. Configure as variáveis de ambiente no arquivo `.env`:
+```
+PORT=3001
+MONGODB_URI=sua_string_de_conexao_mongodb
+JWT_SECRET=seu_segredo_jwt
+```
+
+4. Inicie o servidor de desenvolvimento:
+```bash
+npm run dev
+```
+
+### Frontend
+
+1. Acesse o diretório do frontend:
+```bash
+cd frontend
+```
+
+2. Instale as dependências:
+```bash
+npm install
+```
+
+3. Configure as variáveis de ambiente no arquivo `.env`:
+```
+REACT_APP_API_URL=http://localhost:3001
+```
+
+4. Inicie o servidor de desenvolvimento:
 ```bash
 npm start
 ```
 
-The application will be available at `http://localhost:3000`
+## 🚀 Scripts Disponíveis
 
-## 📦 Available Scripts
+### Backend
+- `npm start` - Inicia o servidor em produção
+- `npm run dev` - Inicia o servidor em modo de desenvolvimento com nodemon
+- `npm test` - Executa os testes
+- `npm run migrate` - Executa migrações do banco de dados
+- `npm run seed` - Popula o banco de dados com dados iniciais
 
-- `npm start` - Starts the development server
-- `npm test` - Runs tests
-- `npm run build` - Creates production build
-- `npm run eject` - Ejects Create React App configuration
+### Frontend
+- `npm start` - Inicia o servidor de desenvolvimento
+- `npm test` - Executa os testes
+- `npm run build` - Cria uma versão otimizada para produção
 
-## 🏗️ Project Structure
+## 🤝 Como Contribuir
 
-```
-src/
-├── components/     # Reusable components
-├── pages/         # Application pages
-├── routes/        # Route configuration
-├── assets/        # Static resources
-├── Utils/         # Utility functions
-└── Styles/        # Style files
-```
+1. Faça um Fork do projeto
+2. Crie uma Branch para sua Feature (`git checkout -b feature/FeatureIncrivel`)
+3. Adicione suas mudanças (`git add .`)
+4. Comite suas mudanças (`git commit -m 'Adiciona uma feature incrível'`)
+4. Faça o Push da Branch (`git push origin feature/FeatureIncrivel`)
+5. Abra um Pull Request
 
-## 🤝 How to Contribute
+## 📝 Padrões de Código
 
-1. Fork the project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+- Siga as convenções do React
+- Mantenha os componentes pequenos e reutilizáveis
+- Documente funções e componentes importantes
+- Escreva testes para novas funcionalidades
 
-## 📝 Code Standards
+## 🔐 Segurança
 
-- Follow React code conventions
-- Keep components small and reusable
-- Document important functions and components
-- Write tests for new features
+- Autenticação JWT
+- Proteção CSRF
+- Sanitização de inputs
+- CORS configurado
+- Headers de segurança habilitados
 
-## 🔐 Security
+## 📱 Suporte
 
-- JWT Authentication
-- CSRF Protection
-- Input Sanitization
-- HTTPS
+Para suporte, envie um e-mail para suporte@econagro.com.br ou abra uma issue no GitHub.
 
-## 📱 Support
+## 📄 Licença
 
-For support, email support@econagro.com.br or open an issue on GitHub.
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-## 📄 License
+## 🙏 Agradecimentos
 
-This project is under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## 🙏 Acknowledgments
-
-- Development team
-- Contributors
-- Open source community
+- Equipe de desenvolvimento
+- Colaboradores
+- Comunidade de código aberto
 
 ---
 
-Developed with ❤️ by the EconAgro team
+Desenvolvido com ❤️ pela equipe EconAgro
