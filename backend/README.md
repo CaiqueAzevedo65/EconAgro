@@ -124,3 +124,103 @@ backend/
 ## 📄 Licença
 
 Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+## 📦 API EconAgro - Backend
+
+API RESTful para o sistema EconAgro, desenvolvida com Node.js, Express e MongoDB.
+
+## 🚀 Tecnologias
+
+- **Node.js** - Ambiente de execução JavaScript
+- **Express** - Framework web para Node.js
+- **MongoDB** - Banco de dados NoSQL
+- **Mongoose** - ODM para MongoDB
+- **ESLint** - Linter para manter a qualidade do código
+- **Prettier** - Formatador de código
+
+## 📋 Pré-requisitos
+
+- Node.js (versão 14 ou superior)
+- MongoDB (local ou Atlas)
+- npm ou yarn
+
+## 🛠️ Instalação
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/econagro-backend.git
+   cd econagro-backend
+   ```
+
+2. Instale as dependências:
+   ```bash
+   npm install
+   # ou
+   yarn
+   ```
+
+3. Configure as variáveis de ambiente:
+   Crie um arquivo `.env` na raiz do projeto com as seguintes variáveis:
+   ```env
+   NODE_ENV=development
+   PORT=3001
+   MONGODB_URI=sua_string_de_conexao_mongodb
+   JWT_SECRET=seu_segredo_jwt
+   ```
+
+4. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   # ou
+   yarn dev
+   ```
+
+   O servidor estará disponível em `http://localhost:3001`
+
+## 🚀 Rotas da API
+
+### Categorias
+
+- `GET /api/categories` - Lista todas as categorias
+- `GET /api/categories/:id` - Obtém uma categoria específica
+- `POST /api/categories` - Cria uma nova categoria
+- `PUT /api/categories/:id` - Atualiza uma categoria existente
+- `DELETE /api/categories/:id` - Remove uma categoria
+
+### Produtos
+
+- `GET /api/products` - Lista todos os produtos
+- `GET /api/products/:id` - Obtém um produto específico
+- `GET /api/products/category/:categoryName` - Lista produtos por categoria
+- `POST /api/products` - Cria um novo produto
+- `PUT /api/products/:id` - Atualiza um produto existente
+- `DELETE /api/products/:id` - Remove um produto
+
+## 🛠️ Comandos Úteis
+
+- `npm run dev` - Inicia o servidor em modo de desenvolvimento
+- `npm run lint` - Verifica problemas de estilo de código
+- `npm run lint:fix` - Corrige automaticamente problemas de estilo
+
+## 🗄️ Estrutura do Projeto
+
+```
+src/
+├── config/           # Configurações do banco de dados e outras configurações
+├── controllers/       # Lógica dos controladores
+├── middlewares/       # Middlewares personalizados
+├── models/            # Modelos do MongoDB
+├── routes/            # Definições de rotas
+├── utils/             # Utilitários e helpers
+├── validators/        # Validações de entrada
+├── app.js             # Configuração do Express
+└── server.js          # Ponto de entrada da aplicação
+```
+
+## 📄 Licença
+
+Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+
+Desenvolvido por [Seu Nome] - [Seu Email]
