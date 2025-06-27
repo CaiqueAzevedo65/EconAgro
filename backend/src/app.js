@@ -21,7 +21,11 @@ class App {
     this.app.disable('x-powered-by');
     
     // Middlewares essenciais
-    this.app.use(cors());
+    this.app.use(cors({
+      origin: 'https://agro-tech-liart.vercel.app',
+      // credentials: true // remova se não precisar de cookies/autenticação
+    }));
+
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     
