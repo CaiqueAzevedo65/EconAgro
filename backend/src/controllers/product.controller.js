@@ -51,7 +51,7 @@ class ProductController {
         where.category = category;
       }
       
-      const products = await Product.findAll({ 
+      const products = await Product.find({ 
         where,
         include: [{
           model: Category,
