@@ -32,7 +32,8 @@ const productValidationRules = {
     
     body('category')
       .trim()
-      .notEmpty().withMessage('A categoria é obrigatória'),
+      .notEmpty().withMessage('A categoria é obrigatória')
+      .isMongoId().withMessage('Categoria inválida'),
     
     body('description')
       .optional()
@@ -40,13 +41,19 @@ const productValidationRules = {
     
     body('imageUrl')
       .optional()
-      .isURL().withMessage('A URL da imagem deve ser válida')
+      .isString().withMessage('A imagem deve ser uma string'),
+    body('image')
+      .optional()
+      .isString().withMessage('A imagem deve ser uma string'),
+    body('img')
+      .optional()
+      .isString().withMessage('A imagem deve ser uma string')
   ],
 
   // Atualizar produto
   update: [
     param('id')
-      .isInt().withMessage('ID inválido'),
+      .isMongoId().withMessage('ID inválido'),
     
     body('name')
       .optional()
@@ -60,7 +67,8 @@ const productValidationRules = {
     body('category')
       .optional()
       .trim()
-      .notEmpty().withMessage('A categoria não pode estar vazia'),
+      .notEmpty().withMessage('A categoria não pode estar vazia')
+      .isMongoId().withMessage('Categoria inválida'),
     
     body('description')
       .optional()
@@ -68,13 +76,19 @@ const productValidationRules = {
     
     body('imageUrl')
       .optional()
-      .isURL().withMessage('A URL da imagem deve ser válida')
+      .isString().withMessage('A imagem deve ser uma string'),
+    body('image')
+      .optional()
+      .isString().withMessage('A imagem deve ser uma string'),
+    body('img')
+      .optional()
+      .isString().withMessage('A imagem deve ser uma string')
   ],
 
   // Obter/Excluir por ID
   getById: [
     param('id')
-      .isInt().withMessage('ID inválido')
+      .isMongoId().withMessage('ID inválido')
   ]
 };
 

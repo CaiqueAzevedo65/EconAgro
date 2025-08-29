@@ -39,11 +39,16 @@ function Produtos({ category }) {
         
         console.log('Resposta da API:', response);
         
-        // Adiciona a URL base para as imagens
-        const productsWithFullImageUrl = response.data.map(product => ({
-          ...product,
-          img: product.img.startsWith('http') ? product.img : `http://localhost:3001${product.img}`
-        }));
+        // Adiciona a URL base para as imagens a partir do baseURL do cliente API
+        const apiBase = api.defaults.baseURL.replace(/\/api\/?$/, '');
+        const productsWithFullImageUrl = response.data.map(product => {
+          const fullImg = product.img && product.img.startsWith('http')
+            ? product.img
+            : product.img
+              ? `${apiBase}${product.img}`
+              : FALLBACK_IMAGE;
+          return { ...product, img: fullImg };
+        });
         
         setProducts(productsWithFullImageUrl);
       } catch (err) {

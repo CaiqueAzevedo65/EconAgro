@@ -21,8 +21,23 @@ class App {
     this.app.disable('x-powered-by');
     
     // Middlewares essenciais
+    const corsOriginEnv = process.env.CORS_ORIGIN || '';
+    const allowedOrigins = corsOriginEnv.split(',').map(o => o.trim()).filter(Boolean);
+    if (process.env.NODE_ENV !== 'production') {
+      allowedOrigins.push('http://localhost:3000');
+    }
     this.app.use(cors({
-      origin: 'https://agro-tech-liart.vercel.app',
+      origin: function (origin, callback) {
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.length === 0) {
+          if (process.env.NODE_ENV !== 'production') {
+            return callback(null, true);
+          }
+          return callback(new Error('Not allowed by CORS'));
+        }
+        if (allowedOrigins.includes(origin)) return callback(null, true);
+        return callback(new Error('Not allowed by CORS'));
+      },
       // credentials: true // remova se não precisar de cookies/autenticação
     }));
 

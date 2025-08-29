@@ -1,7 +1,16 @@
 import axios from 'axios';
 
+// Normaliza a baseURL para garantir o sufixo /api
+const resolveBaseUrl = () => {
+  const envUrl = process.env.REACT_APP_API_URL;
+  if (!envUrl) return 'http://localhost:3001/api';
+  const trimmed = envUrl.replace(/\/$/, '');
+  if (/\/api$/i.test(trimmed)) return trimmed;
+  return `${trimmed}/api`;
+};
+
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3001/api',
+  baseURL: resolveBaseUrl(),
   headers: {
     'Content-Type': 'application/json',
   },

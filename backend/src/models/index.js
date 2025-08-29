@@ -1,10 +1,4 @@
-const mongoose = require('mongoose');
-const connectDB = require('../config/mongodb');
-
-// Conectar ao banco de dados
-connectDB();
-
-// Exportar modelos
+// Exportar modelos (conexão é gerenciada no server.js)
 module.exports = {
   Category: require('./category'),
   Product: require('./Product')

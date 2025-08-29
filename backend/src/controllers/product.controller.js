@@ -5,6 +5,7 @@ const {
   BadRequestError,
   ValidationError 
 } = require('../utils/errors');
+const { deleteFromCloudinary } = require('../config/cloudinary');
 
 /**
  * @swagger
@@ -45,28 +46,27 @@ class ProductController {
   async getAll(req, res, next) {
     try {
       const { category } = req.query;
-      const where = {};
-      
+      const filter = {};
       if (category) {
-        where.category = category;
+        filter.category = category;
       }
-      
-      const products = await Product.find({ 
-        where,
-        include: [{
-          model: Category,
-          as: 'category',
-          required: !!category
-        }]
-      });
-      
-      // Mapeia os produtos para o formato esperado pelo frontend
-      const formattedProducts = products.map(product => ({
-        ...product.get({ plain: true }),
-        img: product.imageUrl // Mapeia imageUrl para img
+
+      const products = await Product.find(filter).sort({ createdAt: -1 });
+
+      const data = products.map((p) => ({
+        id: p._id.toString(),
+        name: p.name,
+        description: p.description,
+        price: p.price,
+        quantity: p.quantity,
+        category: p.category?.toString ? p.category.toString() : p.category,
+        img: p.image || null,
+        active: p.active,
+        createdAt: p.createdAt,
+        updatedAt: p.updatedAt,
       }));
-      
-      res.status(StatusCodes.OK).json(formattedProducts);
+
+      res.status(StatusCodes.OK).json(data);
     } catch (error) {
       next(error);
     }
@@ -98,24 +98,26 @@ class ProductController {
   async getById(req, res, next) {
     try {
       const { id } = req.params;
-      const product = await Product.findByPk(id, {
-        include: [{
-          model: Category,
-          as: 'category'
-        }]
-      });
-      
-      if (!product) {
+      const p = await Product.findById(id);
+
+      if (!p) {
         throw new NotFoundError('Produto não encontrado');
       }
 
-      // Formata o produto para o formato esperado pelo frontend
-      const formattedProduct = {
-        ...product.get({ plain: true }),
-        img: product.imageUrl // Mapeia imageUrl para img
+      const data = {
+        id: p._id.toString(),
+        name: p.name,
+        description: p.description,
+        price: p.price,
+        quantity: p.quantity,
+        category: p.category?.toString ? p.category.toString() : p.category,
+        img: p.image || null,
+        active: p.active,
+        createdAt: p.createdAt,
+        updatedAt: p.updatedAt,
       };
 
-      res.status(StatusCodes.OK).json(formattedProduct);
+      res.status(StatusCodes.OK).json(data);
     } catch (error) {
       next(error);
     }
@@ -145,11 +147,36 @@ class ProductController {
    */
   async create(req, res, next) {
     try {
-      const product = await Product.create(req.body);
-      res.status(StatusCodes.CREATED).json({
-        success: true,
-        data: product
+      const { name, description, price, quantity, category } = req.body;
+      
+      // Imagem do upload (Cloudinary)
+      const imageUrl = req.file ? req.file.path : null;
+
+      const doc = new Product({
+        name,
+        description,
+        price,
+        quantity,
+        category,
+        image: imageUrl,
       });
+
+      await doc.save();
+
+      const data = {
+        id: doc._id.toString(),
+        name: doc.name,
+        description: doc.description,
+        price: doc.price,
+        quantity: doc.quantity,
+        category: doc.category?.toString ? doc.category.toString() : doc.category,
+        img: doc.image || null,
+        active: doc.active,
+        createdAt: doc.createdAt,
+        updatedAt: doc.updatedAt,
+      };
+
+      res.status(StatusCodes.CREATED).json({ success: true, data });
     } catch (error) {
       next(error);
     }
@@ -189,19 +216,46 @@ class ProductController {
   async update(req, res, next) {
     try {
       const { id } = req.params;
-      const [updated] = await Product.update(req.body, {
-        where: { id }
-      });
+      const updateData = { ...req.body };
 
-      if (!updated) {
+      // Buscar produto atual para verificar imagem existente
+      const currentProduct = await Product.findById(id);
+      if (!currentProduct) {
         throw new NotFoundError('Produto não encontrado');
       }
 
-      const updatedProduct = await Product.findByPk(id);
-      res.status(StatusCodes.OK).json({
-        success: true,
-        data: updatedProduct
-      });
+      // Se há uma nova imagem sendo enviada
+      if (req.file) {
+        // Deletar imagem antiga do Cloudinary (se existir)
+        if (currentProduct.image) {
+          try {
+            // Extrair public_id do URL do Cloudinary
+            const publicId = currentProduct.image.split('/').pop().split('.')[0];
+            const fullPublicId = `econagro/products/${publicId}`;
+            await deleteFromCloudinary(fullPublicId);
+          } catch (deleteError) {
+            console.warn('Erro ao deletar imagem antiga:', deleteError.message);
+          }
+        }
+        updateData.image = req.file.path;
+      }
+
+      const p = await Product.findByIdAndUpdate(id, updateData, { new: true, runValidators: true });
+
+      const data = {
+        id: p._id.toString(),
+        name: p.name,
+        description: p.description,
+        price: p.price,
+        quantity: p.quantity,
+        category: p.category?.toString ? p.category.toString() : p.category,
+        img: p.image || null,
+        active: p.active,
+        createdAt: p.createdAt,
+        updatedAt: p.updatedAt,
+      };
+
+      res.status(StatusCodes.OK).json({ success: true, data });
     } catch (error) {
       next(error);
     }
@@ -229,15 +283,25 @@ class ProductController {
   async delete(req, res, next) {
     try {
       const { id } = req.params;
-      
-      const deleted = await Product.destroy({
-        where: { id }
-      });
+      const product = await Product.findById(id);
 
-      if (!deleted) {
+      if (!product) {
         throw new NotFoundError('Produto não encontrado');
       }
 
+      // Deletar imagem do Cloudinary (se existir)
+      if (product.image) {
+        try {
+          // Extrair public_id do URL do Cloudinary
+          const publicId = product.image.split('/').pop().split('.')[0];
+          const fullPublicId = `econagro/products/${publicId}`;
+          await deleteFromCloudinary(fullPublicId);
+        } catch (deleteError) {
+          console.warn('Erro ao deletar imagem do Cloudinary:', deleteError.message);
+        }
+      }
+
+      await Product.findByIdAndDelete(id);
       res.status(StatusCodes.NO_CONTENT).send();
     } catch (error) {
       next(error);
@@ -277,23 +341,30 @@ class ProductController {
   async getByCategory(req, res, next) {
     try {
       const { categoryName } = req.params;
-      
-      const products = await Product.findAll({
-        include: [{
-          model: Category,
-          as: 'category',
-          where: { name: categoryName },
-          required: true
-        }]
-      });
-      
-      // Mapeia os produtos para o formato esperado pelo frontend
-      const formattedProducts = products.map(product => ({
-        ...product.get({ plain: true }),
-        img: product.imageUrl // Mapeia imageUrl para img
+
+      const category = await Category.findOne({ name: new RegExp(`^${categoryName}$`, 'i') });
+
+      if (!category) {
+        // Categoria inexistente -> lista vazia
+        return res.status(StatusCodes.OK).json([]);
+      }
+
+      const products = await Product.find({ category: category._id }).sort({ createdAt: -1 });
+
+      const data = products.map((p) => ({
+        id: p._id.toString(),
+        name: p.name,
+        description: p.description,
+        price: p.price,
+        quantity: p.quantity,
+        category: p.category?.toString ? p.category.toString() : p.category,
+        img: p.image || null,
+        active: p.active,
+        createdAt: p.createdAt,
+        updatedAt: p.updatedAt,
       }));
-      
-      res.status(StatusCodes.OK).json(formattedProducts);
+
+      res.status(StatusCodes.OK).json(data);
     } catch (error) {
       next(error);
     }

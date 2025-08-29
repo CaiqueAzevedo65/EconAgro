@@ -20,7 +20,17 @@ const categorySchema = new mongoose.Schema({
     default: Date.now
   }
 }, {
-  timestamps: true
+  timestamps: true,
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
+});
+
+// Virtual para relacionar produtos por categoria
+categorySchema.virtual('products', {
+  ref: 'Product',
+  localField: '_id',
+  foreignField: 'category',
+  justOne: false
 });
 
 module.exports = mongoose.model('Category', categorySchema);
