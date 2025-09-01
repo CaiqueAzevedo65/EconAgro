@@ -133,8 +133,8 @@
     object-fit: cover;
 }
 
-/* Botões */
-.btn {
+/* Botões específicos do SobreNos - evita conflito com global.css */
+.about-btn {
     display: inline-block;
     padding: 0.8rem 2rem;
     border-radius: 50px;
@@ -146,18 +146,18 @@
     font-size: 1rem;
 }
 
-.btn-primary {
+.about-btn-primary {
     background-color: var(--color-primary);
-    color: white;
+    color: var(--color-light);
 }
 
-.btn-primary:hover {
+.about-btn-primary:hover {
     background-color: var(--color-secondary);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.btn-lg {
+.about-btn-lg {
     padding: 1rem 2.5rem;
     font-size: 1.1rem;
 }

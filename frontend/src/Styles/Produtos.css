@@ -72,7 +72,7 @@
 
 /* Preço do produto */
 .product-price {
-    color: #2e7d32;
+    color: var(--color-secondary);
     font-size: 1.25rem;
     font-weight: bold;
     margin: 10px 0;
@@ -80,8 +80,8 @@
 
 /* Botão de adicionar ao carrinho */
 .botaofaleco {
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-light);
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -90,12 +90,12 @@
     text-transform: uppercase;
     font-size: 0.85rem;
     margin-top: auto;
-    transition: background-color 0.3s;
+    transition: var(--transition);
     width: 100%;
 }
 
 .botaofaleco:hover {
-    background-color: #3e8e41;
+    background-color: var(--color-secondary);
 }
 
 /* Estados de loading e erro */
@@ -145,55 +145,4 @@
     }
 }
 
-.space {
-    height: 30px;
-}
-
-.spacexl {
-    height: 100px;
-}
-
-.shops {
-    width: 82%;
-    justify-self: center;
-    height: 60px;
-    width: 1160px;
-}
-
-.brand {
-    height: 60px;
-    width: 60px;
-}
-
-.brand img {
-    height: 60px;
-    width: 60px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.namebrand {
-    height: 60px;
-    width: 1040px;
-}
-
-.shop {
-    height: 22.5px;
-    padding: 0;
-    margin: 0;
-}
-
-.shoprt {
-    height: 20px;
-    padding: 0;
-    margin: 0;
-}
-
-.km {
-    font-size: small;
-}
-
-.heart {
-    font-size: x-large;
-    color: #4CAF50;
-}
+/* Estilos não utilizados removidos */

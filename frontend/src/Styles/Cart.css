@@ -36,14 +36,14 @@
 
 .quantity-controls button {
   padding: 5px 10px;
-  border: 1px solid #ddd;
-  background: #f8f9fa;
+  border: 1px solid var(--color-gray);
+  background: var(--color-bg-light);
   cursor: pointer;
 }
 
 .remove-button {
-  background: #ff4444;
-  color: white;
+  background: var(--color-error);
+  color: var(--color-light);
   border: none;
   padding: 8px 15px;
   border-radius: 4px;
@@ -51,7 +51,7 @@
 }
 
 .cart-summary {
-  background: #f8f9fa;
+  background: var(--color-bg-light);
   padding: 20px;
   border-radius: 8px;
 }
@@ -66,15 +66,15 @@
   width: 100%;
   padding: 8px;
   margin-top: 5px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-gray);
   border-radius: 4px;
 }
 
 .totals {
   margin: 20px 0;
   padding: 15px 0;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
+  border-top: 1px solid var(--color-gray);
+  border-bottom: 1px solid var(--color-gray);
 }
 
 .totals div {
@@ -100,13 +100,13 @@
 }
 
 .clear-cart-button {
-  background: #6c757d;
-  color: white;
+  background: var(--color-text-light);
+  color: var(--color-light);
 }
 
 .checkout-button {
-  background: #28a745;
-  color: white;
+  background: var(--color-success);
+  color: var(--color-light);
 }
 
 /* Responsividade */
