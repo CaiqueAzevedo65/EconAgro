@@ -1,6 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useSearch } from '../context/SearchContext';
 import '../Styles/Header.css'; // Importação do CSS corrigida
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Importa o componente FontAwesomeIcon
 import { faCartShopping, faLeaf, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'; // Importa ícones específicos do FontAwesome
@@ -8,7 +9,28 @@ import { faCartShopping, faLeaf, faMagnifyingGlass } from '@fortawesome/free-sol
 // Componente Header que renderiza o cabeçalho da aplicação
 function Header() {
   const { cart } = useCart();
+  const { updateSearch } = useSearch();
+  const navigate = useNavigate();
+  const [localSearchTerm, setLocalSearchTerm] = useState('');
   const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (localSearchTerm.trim()) {
+      updateSearch(localSearchTerm.trim());
+      navigate('/');
+    }
+  };
+
+  const handleSearchChange = (e) => {
+    setLocalSearchTerm(e.target.value);
+  };
+
+  const handleSearchKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearchSubmit(e);
+    }
+  };
 
   return (
     <div className="cabeçalho container-fluid bg-green">
@@ -22,12 +44,19 @@ function Header() {
         {/* Barra de pesquisa */}
         <div className="container d-flex align-items-center">
           {/* Barra de pesquisa */}
-          <div className="search">
-            <input type="text" id="searchinput" placeholder="Pesquisar" />
-            <label htmlFor="searchinput">
+          <form onSubmit={handleSearchSubmit} className="search">
+            <input 
+              type="text" 
+              id="searchinput" 
+              placeholder="Pesquisar produtos..."
+              value={localSearchTerm}
+              onChange={handleSearchChange}
+              onKeyPress={handleSearchKeyPress}
+            />
+            <button type="submit" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </label> 
-          </div>
+            </button>
+          </form>
         </div>
 
         <nav className="navbar navbar-expand-lg">

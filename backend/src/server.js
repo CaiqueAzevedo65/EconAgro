@@ -1,13 +1,17 @@
 require('dotenv').config();
 const app = require('./app');
 const connectDB = require('./config/mongodb');
+const { testCloudinaryConnection } = require('./config/cloudinary');
 const { PORT = 3001, NODE_ENV } = process.env;
 
 let server;
 
-// Conectar ao MongoDB e só então iniciar o servidor
+// Conectar ao MongoDB e testar Cloudinary, depois iniciar o servidor
 connectDB()
-  .then(() => {
+  .then(async () => {
+    // Testar conexão com Cloudinary
+    await testCloudinaryConnection();
+    
     server = app.listen(PORT, () => {
       console.log(`🚀 Servidor rodando na porta ${PORT}`);
       console.log(`🌍 Ambiente: ${NODE_ENV || 'development'}`);

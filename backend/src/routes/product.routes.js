@@ -9,6 +9,7 @@ const { uploadSingle, handleUploadError } = require('../middlewares/upload');
 
 // Rotas de produtos
 router.get('/', productController.getAll);
+router.get('/search', productController.search);
 router.post('/', uploadSingle, handleUploadError, productValidationRules.create, validate, productController.create);
 router.get('/category/:categoryName', productController.getByCategory);
 router.get('/:id', productValidationRules.getById, validate, productController.getById);

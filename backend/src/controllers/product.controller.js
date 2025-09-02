@@ -338,6 +338,67 @@ class ProductController {
    *                   items:
    *                     $ref: '#/components/schemas/Product'
    */
+  /**
+   * @swagger
+   * /products/search:
+   *   get:
+   *     summary: Busca produtos por termo
+   *     tags: [Produtos]
+   *     parameters:
+   *       - in: query
+   *         name: q
+   *         required: true
+   *         schema:
+   *           type: string
+   *         description: Termo de busca
+   *     responses:
+   *       200:
+   *         description: Lista de produtos encontrados
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: array
+   *               items:
+   *                 $ref: '#/components/schemas/Product'
+   */
+  async search(req, res, next) {
+    try {
+      const { q } = req.query;
+      
+      if (!q || q.trim() === '') {
+        return res.status(StatusCodes.OK).json([]);
+      }
+
+      const searchTerm = q.trim();
+      
+      // Busca por nome ou descrição usando regex case-insensitive
+      const products = await Product.find({
+        $or: [
+          { name: { $regex: searchTerm, $options: 'i' } },
+          { description: { $regex: searchTerm, $options: 'i' } }
+        ],
+        active: true // Só produtos ativos
+      }).sort({ createdAt: -1 });
+
+      const data = products.map((p) => ({
+        id: p._id.toString(),
+        name: p.name,
+        description: p.description,
+        price: p.price,
+        quantity: p.quantity,
+        category: p.category?.toString ? p.category.toString() : p.category,
+        img: p.image || null,
+        active: p.active,
+        createdAt: p.createdAt,
+        updatedAt: p.updatedAt,
+      }));
+
+      res.status(StatusCodes.OK).json(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
   async getByCategory(req, res, next) {
     try {
       const { categoryName } = req.params;

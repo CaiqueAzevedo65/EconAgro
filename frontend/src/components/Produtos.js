@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
+import { useSearch } from '../context/SearchContext';
 import api from '../services/api';
 import '../Styles/Produtos.css';
 
@@ -8,7 +9,9 @@ const FALLBACK_IMAGE = 'https://placehold.co/300x200?text=Imagem+não+encontrada
 
 function Produtos({ category }) {
   const { addToCart } = useCart();
+  const { searchTerm } = useSearch();
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -51,6 +54,7 @@ function Produtos({ category }) {
         });
         
         setProducts(productsWithFullImageUrl);
+        setFilteredProducts(productsWithFullImageUrl);
       } catch (err) {
         console.error('Erro ao buscar produtos:', err);
         setError('Erro ao carregar produtos. Tente novamente mais tarde.');
@@ -62,18 +66,48 @@ function Produtos({ category }) {
     fetchProducts();
   }, [category]);
 
+  // Efeito para filtrar produtos baseado no termo de pesquisa
+  useEffect(() => {
+    if (!searchTerm) {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter(product => 
+        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        product.description?.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [searchTerm, products]);
+
   console.log('Renderizando Produtos. Estado atual:', { loading, error, productsCount: products.length });
 
   if (loading) return <div className="loading">Carregando produtos...</div>;
   if (error) return <div className="error">{error}</div>;
   if (!products.length) return <div className="no-products">Nenhum produto encontrado.</div>;
+  
+  const productsToShow = filteredProducts;
+  if (searchTerm && !productsToShow.length) {
+    return (
+      <div className="no-products">
+        Nenhum produto encontrado para "{searchTerm}".
+        <br />
+        <small>Tente buscar por outros termos.</small>
+      </div>
+    );
+  }
 
   return (
     <main>
       <section>
         <div className="pagcontent">
+          {searchTerm && (
+            <div className="search-info" style={{ textAlign: 'center', marginBottom: '20px' }}>
+              <h3>Resultados para: "{searchTerm}"</h3>
+              <p>{productsToShow.length} produto(s) encontrado(s)</p>
+            </div>
+          )}
           <div className="products">
-            {products.map((product) => (
+            {productsToShow.map((product) => (
               <div key={product.id} className="card">
                 <div className="image">
                   <img 
