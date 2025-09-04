@@ -20,26 +20,27 @@ class App {
     // Configurações de segurança básicas
     this.app.disable('x-powered-by');
     
-    // Middlewares essenciais
-    const corsOriginEnv = process.env.CORS_ORIGIN || '';
-    const allowedOrigins = corsOriginEnv.split(',').map(o => o.trim()).filter(Boolean);
-    if (process.env.NODE_ENV !== 'production') {
-      allowedOrigins.push('http://localhost:3000');
-    }
-    this.app.use(cors({
-      origin: function (origin, callback) {
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.length === 0) {
-          if (process.env.NODE_ENV !== 'production') {
-            return callback(null, true);
-          }
-          return callback(new Error('Not allowed by CORS'));
-        }
-        if (allowedOrigins.includes(origin)) return callback(null, true);
-        return callback(new Error('Not allowed by CORS'));
-      },
-      // credentials: true // remova se não precisar de cookies/autenticação
-    }));
+    // Configuração de CORS
+    const getCorsOrigins = () => {
+      if (process.env.NODE_ENV === 'production') {
+        // Em produção, use CORS_ORIGIN ou um padrão seguro
+        return process.env.CORS_ORIGIN ? 
+          process.env.CORS_ORIGIN.split(',').map(origin => origin.trim()) : 
+          ['https://econagro.onrender.com'];
+      }
+      // Em desenvolvimento, seja mais permissivo
+      return ['http://localhost:3000', 'http://localhost:3001', 'http://127.0.0.1:3000'];
+    };
+
+    const corsOptions = {
+      origin: getCorsOrigins(),
+      credentials: true,
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization'],
+      optionsSuccessStatus: 200
+    };
+
+    this.app.use(cors(corsOptions));
 
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
