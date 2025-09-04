@@ -42,9 +42,29 @@ function Produtos({ category }) {
         
         console.log('Resposta da API:', response);
         
+        // Verificar se a resposta é válida
+        let products = [];
+        if (response.data) {
+          // Se response.data é um array diretamente
+          if (Array.isArray(response.data)) {
+            products = response.data;
+          }
+          // Se response.data tem uma propriedade 'data' com o array
+          else if (response.data.data && Array.isArray(response.data.data)) {
+            products = response.data.data;
+          }
+          // Se response.data é um objeto, mas não tem estrutura esperada
+          else {
+            console.warn('Estrutura de dados inesperada:', response.data);
+            products = [];
+          }
+        }
+        
+        console.log('Produtos extraídos:', products);
+        
         // Adiciona a URL base para as imagens a partir do baseURL do cliente API
         const apiBase = api.defaults.baseURL.replace(/\/api\/?$/, '');
-        const productsWithFullImageUrl = response.data.map(product => {
+        const productsWithFullImageUrl = products.map(product => {
           const fullImg = product.img && product.img.startsWith('http')
             ? product.img
             : product.img
