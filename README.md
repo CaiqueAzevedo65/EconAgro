@@ -2,39 +2,36 @@
 
 EconAgro é uma plataforma web moderna desenvolvida para revolucionar a gestão do agronegócio, oferecendo soluções tecnológicas integradas para produtores rurais.
 
-> **Nota:** Este projeto está em fase de refatoração e modernização do Frontend, preparando-se para uma futura migração para Next.js e Tailwind CSS.
+> **Nota:** Este projeto foi refatorado e modernizado para **Next.js 14** e **Tailwind CSS**.
 
 ## 🚀 Recursos
 
 - **E-commerce Agrícola:** Navegação por categorias, carrinho de compras, e busca de produtos.
-- **Interface Responsiva:** Design adaptável para dispositivos móveis e desktop utilizando React-Bootstrap.
+- **Interface Responsiva:** Design adaptável para dispositivos móveis e desktop utilizando Tailwind CSS.
 - **Gestão de Estado:** Uso de Context API para gerenciamento global de carrinho e busca.
-- **Arquitetura Modular:** Separação clara de responsabilidades (Services, Contexts, Hooks).
+- **Arquitetura Modular:** Separação clara de responsabilidades (Services, Contexts, Hooks) com App Router.
 
 ## 🏗️ Estrutura do Projeto (Frontend)
 
 ```
 frontend/
-├── public/           # Arquivos estáticos (index.html, manifest, icons)
+├── public/           # Arquivos estáticos (imagens públicas, etc)
 └── src/              # Código-fonte da aplicação
-    ├── assets/       # Recursos estáticos (imagens)
+    ├── app/          # Páginas e Layouts (App Router)
+    ├── assets/       # Recursos estáticos importados (imagens)
     ├── components/   # Componentes reutilizáveis (Header, Footer, Cart, etc.)
     ├── context/      # Gerenciamento de estado global (CartContext, SearchContext)
     ├── data/         # Dados estáticos centralizados (categorias)
     ├── hooks/        # Custom Hooks (useCartLogic)
-    ├── pages/        # Páginas da aplicação (Home, Login, Register, CategoryPage)
-    ├── routes/       # Configuração de rotas (React Router v6)
-    ├── services/     # Comunicação com API (Axios, productService)
-    ├── Styles/       # Estilos CSS (em migração para Bootstrap classes)
-    └── App.js        # Componente raiz
+    └── services/     # Comunicação com API (Axios, productService)
 ```
 
 ## 🛠️ Tecnologias Utilizadas
 
 ### Frontend
+- **Next.js 14** - Framework React para produção (App Router)
 - **React 18** - Biblioteca para construção de interfaces
-- **React Router DOM v6** - Roteamento dinâmico e navegação
-- **React Bootstrap 5** - Framework de UI para componentes responsivos e acessíveis
+- **Tailwind CSS** - Framework CSS utilitário
 - **Context API** - Gerenciamento de estado nativo do React
 - **Axios** - Cliente HTTP para integração com API
 - **Font Awesome** - Ícones vetoriais e responsivos
@@ -44,8 +41,8 @@ frontend/
 
 ## 📋 Pré-requisitos
 
-- Node.js (versão 16 ou superior recomendada)
-- npm (versão 7 ou superior)
+- Node.js (versão 18 ou superior recomendada)
+- npm (versão 9 ou superior)
 
 ## 🔧 Instalação e Execução
 
@@ -59,26 +56,19 @@ cd frontend
 npm install
 ```
 
-3. Configure as variáveis de ambiente:
-Crie um arquivo `.env` na raiz da pasta `frontend` se necessário (embora existam defaults):
-```
-REACT_APP_API_URL=http://localhost:3001/api
-```
-
-4. Inicie o servidor de desenvolvimento:
+3. Inicie o servidor de desenvolvimento:
 ```bash
-npm start
+npm run dev
 ```
 A aplicação estará disponível em `http://localhost:3000`.
 
 ## 🔄 Status da Refatoração
 
-- [x] Migração de componentes chave para React-Bootstrap (Header, Footer, Login, Register, Cart, Contato).
-- [x] Centralização da lógica de serviços (productService).
-- [x] Implementação de rotas dinâmicas para categorias.
-- [x] Melhorias de UX e Feedback visual (Loading states, Fallback images).
-- [ ] Migração completa para Next.js (Planejado).
-- [ ] Implementação de Tailwind CSS (Planejado).
+- [x] Migração para Next.js (App Router).
+- [x] Substituição do Bootstrap por Tailwind CSS.
+- [x] Centralização da lógica de serviços.
+- [x] Otimização de Imagens (Next/Image).
+- [x] Configuração de rotas dinâmicas.
 
 ## 🤝 Como Contribuir
 
