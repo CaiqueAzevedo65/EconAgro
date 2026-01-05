@@ -94,7 +94,7 @@ body {
 }
 
 .continue-button button:hover {
-    background-color: #1ab65e;
+    background-color: var(--color-secondary);
 }
 
 #logincadastro {

@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CartProvider } from '../context/CartContext';
+import { SearchProvider } from '../context/SearchContext';
 
 import Login from '../pages/Login';
 import Header from '../components/header';
@@ -13,8 +14,9 @@ import SobreNos from '../components/SobreNos';
 
 function Rotas() {
     return (
-        <CartProvider>
-            <BrowserRouter>
+        <SearchProvider>
+            <CartProvider>
+                <BrowserRouter>
                 <Header />
                 <div className="main-content" style={{ flexGrow: 1 }}>
                     <Routes>
@@ -30,8 +32,9 @@ function Rotas() {
                     </Routes>
                 </div>
                 <Footer />
-            </BrowserRouter>
-        </CartProvider>
+                </BrowserRouter>
+            </CartProvider>
+        </SearchProvider>
     );
 }
 

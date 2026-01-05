@@ -9,16 +9,17 @@
 }
 
 .voltar-button {
-    background-color: #17A354;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-light);
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     width: auto; /* Garante que o botão não ocupe toda a largura */
     align-self: center; /* Alinha o botão ao centro */
+    transition: var(--transition);
 }
 
 .voltar-button:hover {
-    background-color: #1ab65e;
+    background-color: var(--color-secondary);
 }
