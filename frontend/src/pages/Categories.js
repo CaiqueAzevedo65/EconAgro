@@ -34,7 +34,7 @@ export default function Home() {
                   className="categoria-img" 
                   onError={(e) => {
                     e.target.onerror = null; 
-                    e.target.src = 'https://via.placeholder.com/200x150?text=Imagem+Não+Disponível'
+                    e.target.src = 'https://placehold.co/200x150?text=Imagem+Não+Disponível'
                   }}
                 />
               </div>
