@@ -2,100 +2,52 @@
 
 EconAgro é uma plataforma web moderna desenvolvida para revolucionar a gestão do agronegócio, oferecendo soluções tecnológicas integradas para produtores rurais.
 
+> **Nota:** Este projeto está em fase de refatoração e modernização do Frontend, preparando-se para uma futura migração para Next.js e Tailwind CSS.
+
 ## 🚀 Recursos
 
-- Gerenciamento de propriedades rurais
-- Monitoramento de safras
-- Controle financeiro
-- Análise de dados agrícolas
-- Relatórios personalizados
-- Interface responsiva e intuitiva
+- **E-commerce Agrícola:** Navegação por categorias, carrinho de compras, e busca de produtos.
+- **Interface Responsiva:** Design adaptável para dispositivos móveis e desktop utilizando React-Bootstrap.
+- **Gestão de Estado:** Uso de Context API para gerenciamento global de carrinho e busca.
+- **Arquitetura Modular:** Separação clara de responsabilidades (Services, Contexts, Hooks).
 
-## 🏗️ Estrutura do Projeto
+## 🏗️ Estrutura do Projeto (Frontend)
 
 ```
-.
-├── backend/               # API RESTful
-│   ├── src/               # Código-fonte do backend
-│   │   ├── config/       # Configurações do servidor
-│   │   ├── controllers/  # Lógica dos controladores
-│   │   ├── models/       # Modelos de dados
-│   │   ├── routes/       # Definição de rotas
-│   │   └── server.js     # Ponto de entrada da aplicação
-│   └── uploads/          # Arquivos enviados
-│
-└── frontend/             # Aplicação React
-    ├── public/           # Arquivos estáticos
-    └── src/              # Código-fonte do frontend
-        ├── assets/       # Recursos estáticos (imagens, estilos)
-        ├── components/   # Componentes reutilizáveis
-        ├── pages/        # Páginas da aplicação
-        └── App.js        # Componente raiz
+frontend/
+├── public/           # Arquivos estáticos (index.html, manifest, icons)
+└── src/              # Código-fonte da aplicação
+    ├── assets/       # Recursos estáticos (imagens)
+    ├── components/   # Componentes reutilizáveis (Header, Footer, Cart, etc.)
+    ├── context/      # Gerenciamento de estado global (CartContext, SearchContext)
+    ├── data/         # Dados estáticos centralizados (categorias)
+    ├── hooks/        # Custom Hooks (useCartLogic)
+    ├── pages/        # Páginas da aplicação (Home, Login, Register, CategoryPage)
+    ├── routes/       # Configuração de rotas (React Router v6)
+    ├── services/     # Comunicação com API (Axios, productService)
+    ├── Styles/       # Estilos CSS (em migração para Bootstrap classes)
+    └── App.js        # Componente raiz
 ```
 
 ## 🛠️ Tecnologias Utilizadas
 
-### Backend
-- **Node.js** - Ambiente de execução JavaScript
-- **Express.js** - Framework web para Node.js
-- **MongoDB** - Banco de dados NoSQL
-- **Mongoose** - ODM para MongoDB
-- **JWT** - Autenticação via JSON Web Tokens
-- **Express Validator** - Validação de dados
-- **CORS** - Middleware para habilitar CORS
-- **Dotenv** - Gerenciamento de variáveis de ambiente
-- **Morgan** - Logger de requisições HTTP
-- **Moment Timezone** - Manipulação de datas e fusos horários
-- **HTTP Status Codes** - Constantes para códigos de status HTTP
-
 ### Frontend
 - **React 18** - Biblioteca para construção de interfaces
-- **React Router DOM** - Roteamento na aplicação
-- **React Bootstrap 5** - Componentes de UI responsivos
-- **Font Awesome** - Ícones
-- **Axios** - Cliente HTTP para requisições à API
-- **Web Vitals** - Métricas de performance
+- **React Router DOM v6** - Roteamento dinâmico e navegação
+- **React Bootstrap 5** - Framework de UI para componentes responsivos e acessíveis
+- **Context API** - Gerenciamento de estado nativo do React
+- **Axios** - Cliente HTTP para integração com API
+- **Font Awesome** - Ícones vetoriais e responsivos
 
-### Ferramentas de Desenvolvimento
-- **Nodemon** - Reinício automático do servidor em desenvolvimento
-- **ESLint** - Linter para padronização de código
-- **Prettier** - Formatador de código
-- **Jest** - Framework de testes
-- **Supertest** - Testes de integração HTTP
+### Backend (Separado)
+- O backend deste projeto foi desacoplado e reside em um repositório dedicado, utilizando Node.js, Express e MongoDB.
 
 ## 📋 Pré-requisitos
 
-- Node.js (versão 14 ou superior)
-- npm (versão 6 ou superior)
-- MongoDB (local ou Atlas)
+- Node.js (versão 16 ou superior recomendada)
+- npm (versão 7 ou superior)
 
-## 🔧 Instalação
-
-### Backend
-
-1. Acesse o diretório do backend:
-```bash
-cd backend
-```
-
-2. Instale as dependências:
-```bash
-npm install
-```
-
-3. Configure as variáveis de ambiente no arquivo `.env`:
-```
-PORT=3001
-MONGODB_URI=sua_string_de_conexao_mongodb
-JWT_SECRET=seu_segredo_jwt
-```
-
-4. Inicie o servidor de desenvolvimento:
-```bash
-npm run dev
-```
-
-### Frontend
+## 🔧 Instalação e Execução
 
 1. Acesse o diretório do frontend:
 ```bash
@@ -107,67 +59,39 @@ cd frontend
 npm install
 ```
 
-3. Configure as variáveis de ambiente no arquivo `.env`:
+3. Configure as variáveis de ambiente:
+Crie um arquivo `.env` na raiz da pasta `frontend` se necessário (embora existam defaults):
 ```
-REACT_APP_API_URL=http://localhost:3001
+REACT_APP_API_URL=http://localhost:3001/api
 ```
 
 4. Inicie o servidor de desenvolvimento:
 ```bash
 npm start
 ```
+A aplicação estará disponível em `http://localhost:3000`.
 
-## 🚀 Scripts Disponíveis
+## 🔄 Status da Refatoração
 
-### Backend
-- `npm start` - Inicia o servidor em produção
-- `npm run dev` - Inicia o servidor em modo de desenvolvimento com nodemon
-- `npm test` - Executa os testes
-- `npm run migrate` - Executa migrações do banco de dados
-- `npm run seed` - Popula o banco de dados com dados iniciais
-
-### Frontend
-- `npm start` - Inicia o servidor de desenvolvimento
-- `npm test` - Executa os testes
-- `npm run build` - Cria uma versão otimizada para produção
+- [x] Migração de componentes chave para React-Bootstrap (Header, Footer, Login, Register, Cart, Contato).
+- [x] Centralização da lógica de serviços (productService).
+- [x] Implementação de rotas dinâmicas para categorias.
+- [x] Melhorias de UX e Feedback visual (Loading states, Fallback images).
+- [ ] Migração completa para Next.js (Planejado).
+- [ ] Implementação de Tailwind CSS (Planejado).
 
 ## 🤝 Como Contribuir
 
 1. Faça um Fork do projeto
-2. Crie uma Branch para sua Feature (`git checkout -b feature/FeatureIncrivel`)
+2. Crie uma Branch para sua Feature (`git checkout -b feature/NovaFeature`)
 3. Adicione suas mudanças (`git add .`)
-4. Comite suas mudanças (`git commit -m 'Adiciona uma feature incrível'`)
-4. Faça o Push da Branch (`git push origin feature/FeatureIncrivel`)
-5. Abra um Pull Request
-
-## 📝 Padrões de Código
-
-- Siga as convenções do React
-- Mantenha os componentes pequenos e reutilizáveis
-- Documente funções e componentes importantes
-- Escreva testes para novas funcionalidades
-
-## 🔐 Segurança
-
-- Autenticação JWT
-- Proteção CSRF
-- Sanitização de inputs
-- CORS configurado
-- Headers de segurança habilitados
-
-## 📱 Suporte
-
-Para suporte, envie um e-mail para suporte@econagro.com.br ou abra uma issue no GitHub.
+4. Comite suas mudanças (`git commit -m 'feat: Adiciona nova funcionalidade'`)
+5. Faça o Push da Branch (`git push origin feature/NovaFeature`)
+6. Abra um Pull Request
 
 ## 📄 Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
-## 🙏 Agradecimentos
-
-- Equipe de desenvolvimento
-- Colaboradores
-- Comunidade de código aberto
+Este projeto está sob a licença MIT.
 
 ---
 

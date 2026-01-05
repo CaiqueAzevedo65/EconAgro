@@ -1,19 +1,35 @@
 import React from "react";
-import '../Styles/MensagemEnviada.css'; // Importa o arquivo de estilos CSS específico para este componente
+import { Container, Card, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+import '../Styles/MensagemEnviada.css';
 
-// Define o componente funcional MensagemEnviada
 const MensagemEnviada = () => {
+  const navigate = useNavigate();
+
   return (
-    // Elemento principal do componente, utilizando classes do Bootstrap para espaçamento e layout responsivo
-    <main className="main container mx-auto mt-5 p-5">
-      <div className="container mt-5 mb-5 text-center">
-        <h2 className="text-success">Obrigado pela sua mensagem!</h2>
-        <p className="mt-3">
-          Recebemos sua mensagem com sucesso e entraremos em contato em breve.
-        </p>
-      </div>
-    </main>
+    <Container className="d-flex justify-content-center align-items-center py-5" style={{ minHeight: '60vh' }}>
+      <Card className="text-center shadow-lg border-0 p-5" style={{ maxWidth: '500px', width: '100%' }}>
+        <Card.Body>
+          <div className="mb-4 text-success">
+            <FontAwesomeIcon icon={faCheckCircle} size="4x" />
+          </div>
+          <h2 className="fw-bold mb-3 text-dark">Mensagem Enviada!</h2>
+          <p className="text-muted mb-4">
+            Obrigado pelo seu contato. Recebemos sua mensagem com sucesso e nossa equipe responderá em breve.
+          </p>
+          <Button 
+            variant="success" 
+            onClick={() => navigate('/')}
+            className="px-4 py-2 fw-bold custom-btn-primary"
+          >
+            Voltar para o Início
+          </Button>
+        </Card.Body>
+      </Card>
+    </Container>
   );
 };
 
-export default MensagemEnviada; // Exporta o componente para ser utilizado em outros arquivos
+export default MensagemEnviada;

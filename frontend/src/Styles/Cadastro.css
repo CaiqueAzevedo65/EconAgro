@@ -9,125 +9,53 @@ body {
     background-color: var(--color-primary);
 }
 
-.form-container {
+.register-page {
+    background-color: var(--color-bg-light);
+    min-height: calc(100vh - 200px);
+    padding: 2rem 0;
+}
+
+.register-card {
     width: 100%;
     max-width: 900px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: var(--color-light);
-    border-radius: 10px;
-    box-shadow: var(--shadow-md);
-}
-
-.form-row {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-.form-group {
-    flex: 1;
-    margin-bottom: 1rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--color-dark);
-}
-
-.form-group input,
-.form-group select {
-    width: 100%;
-    padding: 0.8rem 1.2rem;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: var(--shadow-sm);
-    font-size: 1rem;
-}
-
-.form-group input:hover,
-.form-group select:hover {
-    background-color: #eeeeee75;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    outline: 1px solid var(--color-primary);
-    border-color: var(--color-primary);
-}
-
-.gender-group {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.gender-group label {
-    margin-right: 1rem;
-    white-space: nowrap;
-}
-
-.gender-options {
-    display: flex;
-    gap: 1rem;
-}
-
-.continue-button {
-    margin-top: 1.5rem;
-}
-
-.continue-button button {
-    width: 100%;
-    padding: 0.8rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.form-input-custom {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-gray);
+    transition: all 0.3s ease;
+}
+
+.form-input-custom:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 0.25rem rgba(23, 163, 84, 0.25);
+}
+
+.custom-btn-primary {
     background-color: var(--color-primary);
-    color: var(--color-light);
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    border: none;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
 }
 
-.continue-button button:hover {
+.custom-btn-primary:hover {
     background-color: var(--color-secondary);
+    transform: translateY(-1px);
 }
 
-#logincadastro {
-    display: block;
-    text-align: center;
-    margin-top: 1rem;
-    color: var(--color-primary);
-    text-decoration: none;
-}
-
-#logincadastro:hover {
-    text-decoration: underline;
+.custom-radio .form-check-input:checked {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
 }
 
 /* Responsividade */
 @media screen and (max-width: 768px) {
-    .form-container {
+    .register-card {
         width: 90%;
         padding: 1.5rem;
-    }
-
-    .form-row {
-        flex-direction: column;
-        gap: 0;
-    }
-
-    .gender-group {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .gender-options {
-        width: 100%;
-        justify-content: space-between;
     }
 }

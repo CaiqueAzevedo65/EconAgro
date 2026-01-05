@@ -1,124 +1,43 @@
-.cart-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+.cart-page {
+    min-height: calc(100vh - 200px);
 }
 
-.cart-items {
-  margin-bottom: 30px;
+.cart-item-card {
+    transition: transform 0.2s;
 }
 
-.cart-item {
-  display: flex;
-  align-items: center;
-  padding: 15px;
-  border-bottom: 1px solid #eee;
-  gap: 20px;
+.cart-item-card:hover {
+    transform: translateY(-2px);
 }
 
 .cart-item-image {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 4px;
+    max-height: 100px;
+    object-fit: cover;
 }
 
-.cart-item-details {
-  flex: 1;
+.cart-summary-card {
+    position: sticky;
+    top: 20px;
 }
 
-.quantity-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
+.form-select-custom,
+.form-input-custom {
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--color-gray);
 }
 
-.quantity-controls button {
-  padding: 5px 10px;
-  border: 1px solid var(--color-gray);
-  background: var(--color-bg-light);
-  cursor: pointer;
+.form-select-custom:focus,
+.form-input-custom:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 0.25rem rgba(23, 163, 84, 0.25);
 }
 
-.remove-button {
-  background: var(--color-error);
-  color: var(--color-light);
-  border: none;
-  padding: 8px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.cart-summary {
-  background: var(--color-bg-light);
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.shipping-options,
-.promo-code {
-  margin-bottom: 20px;
-}
-
-.shipping-options select,
-.promo-code input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border: 1px solid var(--color-gray);
-  border-radius: 4px;
-}
-
-.totals {
-  margin: 20px 0;
-  padding: 15px 0;
-  border-top: 1px solid var(--color-gray);
-  border-bottom: 1px solid var(--color-gray);
-}
-
-.totals div {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-}
-
-.total {
-  font-weight: bold;
-  font-size: 1.2em;
-}
-
-.clear-cart-button,
-.checkout-button {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.clear-cart-button {
-  background: var(--color-text-light);
-  color: var(--color-light);
-}
-
-.checkout-button {
-  background: var(--color-success);
-  color: var(--color-light);
-}
-
-/* Responsividade */
+/* Responsividade ajustada pelo Bootstrap, apenas ajustes finos aqui */
 @media (max-width: 768px) {
-  .cart-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .cart-item-image {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-  }
+    .cart-item-image {
+        max-height: 150px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
 }

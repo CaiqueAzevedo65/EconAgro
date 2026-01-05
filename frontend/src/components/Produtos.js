@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import { useSearch } from '../context/SearchContext';
-import api from '../services/api';
+import productService from '../services/productService';
 import '../Styles/Produtos.css';
 
 // Imagem de fallback
@@ -14,67 +14,33 @@ function Produtos({ category }) {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [addingId, setAddingId] = useState(null); // Estado para feedback visual
 
   // Função para lidar com erros de carregamento de imagem
   const handleImageError = (e) => {
-    console.error('Erro ao carregar imagem:', e.target.src);
     e.target.src = FALLBACK_IMAGE;
     e.target.onerror = null; // Previne loops de erro
   };
 
-  useEffect(() => {
-    console.log('Categoria recebida no Produtos:', category);
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    setAddingId(product.id || product._id || product.name); // Usa ID ou nome como chave
     
+    // Remove o feedback após 1 segundo
+    setTimeout(() => {
+      setAddingId(null);
+    }, 1000);
+  };
+
+  useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
         setError(null);
-        console.log('Buscando produtos...');
         
-        let response;
-        if (category) {
-          console.log(`Buscando produtos da categoria: ${category}`);
-          response = await api.get(`/products/category/${encodeURIComponent(category)}`);
-        } else {
-          console.log('Buscando todos os produtos');
-          response = await api.get('/products');
-        }
-        
-        console.log('Resposta da API:', response);
-        
-        // Verificar se a resposta é válida
-        let products = [];
-        if (response.data) {
-          // Se response.data é um array diretamente
-          if (Array.isArray(response.data)) {
-            products = response.data;
-          }
-          // Se response.data tem uma propriedade 'data' com o array
-          else if (response.data.data && Array.isArray(response.data.data)) {
-            products = response.data.data;
-          }
-          // Se response.data é um objeto, mas não tem estrutura esperada
-          else {
-            console.warn('Estrutura de dados inesperada:', response.data);
-            products = [];
-          }
-        }
-        
-        console.log('Produtos extraídos:', products);
-        
-        // Adiciona a URL base para as imagens a partir do baseURL do cliente API
-        const apiBase = api.defaults.baseURL.replace(/\/api\/?$/, '');
-        const productsWithFullImageUrl = products.map(product => {
-          const fullImg = product.img && product.img.startsWith('http')
-            ? product.img
-            : product.img
-              ? `${apiBase}${product.img}`
-              : FALLBACK_IMAGE;
-          return { ...product, img: fullImg };
-        });
-        
-        setProducts(productsWithFullImageUrl);
-        setFilteredProducts(productsWithFullImageUrl);
+        const data = await productService.getProducts(category);
+        setProducts(data);
+        setFilteredProducts(data);
       } catch (err) {
         console.error('Erro ao buscar produtos:', err);
         setError('Erro ao carregar produtos. Tente novamente mais tarde.');
@@ -91,21 +57,21 @@ function Produtos({ category }) {
     if (!searchTerm) {
       setFilteredProducts(products);
     } else {
+      const lowerTerm = searchTerm.toLowerCase();
       const filtered = products.filter(product => 
-        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        product.description?.toLowerCase().includes(searchTerm.toLowerCase())
+        product.name.toLowerCase().includes(lowerTerm) ||
+        (product.description && product.description.toLowerCase().includes(lowerTerm))
       );
       setFilteredProducts(filtered);
     }
   }, [searchTerm, products]);
-
-  console.log('Renderizando Produtos. Estado atual:', { loading, error, productsCount: products.length });
 
   if (loading) return <div className="loading">Carregando produtos...</div>;
   if (error) return <div className="error">{error}</div>;
   if (!products.length) return <div className="no-products">Nenhum produto encontrado.</div>;
   
   const productsToShow = filteredProducts;
+  
   if (searchTerm && !productsToShow.length) {
     return (
       <div className="no-products">
@@ -128,10 +94,10 @@ function Produtos({ category }) {
           )}
           <div className="products">
             {productsToShow.map((product) => (
-              <div key={product.id} className="card">
+              <div key={product.id || product._id || product.name} className="card">
                 <div className="image">
                   <img 
-                    src={product.img} 
+                    src={product.img || FALLBACK_IMAGE} 
                     alt={product.name}
                     onError={handleImageError}
                   />
@@ -140,10 +106,11 @@ function Produtos({ category }) {
                   <h3 className="product-title">{product.name}</h3>
                   <p className="product-price">{product.price}</p>
                   <button 
-                    className="botaofaleco"
-                    onClick={() => addToCart(product)}
+                    className={`botaofaleco ${addingId === (product.id || product._id || product.name) ? 'added' : ''}`}
+                    onClick={() => handleAddToCart(product)}
+                    disabled={addingId === (product.id || product._id || product.name)}
                   >
-                    Adicionar ao Carrinho
+                    {addingId === (product.id || product._id || product.name) ? 'Adicionado!' : 'Adicionar ao Carrinho'}
                   </button>
                 </div>
               </div>

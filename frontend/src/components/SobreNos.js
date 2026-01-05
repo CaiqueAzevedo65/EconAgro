@@ -9,19 +9,19 @@ const SobreNos = () => {
         {
             name: 'Caique Carnargo Azevedo',
             role: 'Developer Full Stack, Analista de Sistemas e Cientista de Dados',
-            // image: 'https://randomuser.me/api/portraits/men/32.jpg',
+            image: 'https://ui-avatars.com/api/?name=Caique+Azevedo&background=17A354&color=fff&size=150',
             bio: 'Especialista em desenvolvimento de soluções completas e análise de dados para otimização de processos agrícolas.'
         },
         {
             name: 'Viviane Aparecida Reis',
             role: 'Developer Full Stack e CEO',
-            // image: 'https://randomuser.me/api/portraits/women/44.jpg',
+            image: 'https://ui-avatars.com/api/?name=Viviane+Reis&background=17A354&color=fff&size=150',
             bio: 'Lidera nossa equipe com visão estratégica e expertise técnica em desenvolvimento de sistemas para o agronegócio.'
         },
         {
             name: 'Gabriel Furtado de Souza Carvalho',
             role: 'Developer Full Stack, Analista de Sistemas e CTO',
-            // image: 'https://randomuser.me/api/portraits/men/22.jpg',
+            image: 'https://ui-avatars.com/api/?name=Gabriel+Carvalho&background=17A354&color=fff&size=150',
             bio: 'Responsável pela arquitetura de sistemas e inovação tecnológica, integrando soluções para o mercado agrícola.'
         }
     ];

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useSearch } from '../context/SearchContext';
-import '../Styles/Header.css'; // Importação do CSS corrigida
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Importa o componente FontAwesomeIcon
-import { faCartShopping, faLeaf, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'; // Importa ícones específicos do FontAwesome
+import { Navbar, Nav, Container, Form, InputGroup } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartShopping, faLeaf, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import '../Styles/Header.css';
 
-// Componente Header que renderiza o cabeçalho da aplicação
 function Header() {
   const { cart } = useCart();
   const { updateSearch } = useSearch();
@@ -22,90 +22,69 @@ function Header() {
     }
   };
 
-  const handleSearchChange = (e) => {
-    setLocalSearchTerm(e.target.value);
-  };
-
-  const handleSearchKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleSearchSubmit(e);
-    }
-  };
-
   return (
-    <div className="cabeçalho container-fluid bg-green">
-      {/* Navbar superior */}
-      <div className="cabeçalho3 container-fluid">
-        {/* Logo */}
-        <a className="Nome_site text-light" href="/">
-          <FontAwesomeIcon icon={faLeaf} /> EconAgro
-        </a>
-        
-        {/* Barra de pesquisa */}
-        <div className="container d-flex align-items-center">
-          {/* Barra de pesquisa */}
-          <form onSubmit={handleSearchSubmit} className="search">
-            <input 
-              type="text" 
-              id="searchinput" 
-              placeholder="Pesquisar produtos..."
-              value={localSearchTerm}
-              onChange={handleSearchChange}
-              onKeyPress={handleSearchKeyPress}
-            />
-            <button type="submit" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
-            </button>
-          </form>
-        </div>
+    <header className="cabeçalho">
+      {/* Navbar Superior: Logo, Search, Actions */}
+      <Navbar expand="lg" className="bg-green py-3" variant="dark">
+        <Container fluid>
+          <Navbar.Brand as={Link} to="/" className="Nome_site d-flex align-items-center">
+            <FontAwesomeIcon icon={faLeaf} className="me-2" /> EconAgro
+          </Navbar.Brand>
 
-        <nav className="navbar navbar-expand-lg">
-          {/* Botões */}
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <Link to="/cadastro" className="nav-link">Criar Conta</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/login" className="nav-link">Entrar</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/carrinho" className="nav-link">
-                <FontAwesomeIcon icon={faCartShopping} />
-                {itemCount > 0 && <span className="cart-count">{itemCount}</span>}
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </div>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-      {/* Navbar inferior */}
-      <div className="cabeçalho2 container-fluid">
-        <nav className="navbar navbar-expand-lg">
-          {/* Botões */}
-          <ul className="navbar-nav mx-auto">
-            <li className="nav-item">
-              <Link to="/" className="nav-link">Início</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="#conta" className="nav-link">Minha Conta</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="#favoritos" className="nav-link">Favoritos</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="#historico" className="nav-link">Histórico</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/talktous" className="nav-link">Ajuda/Fale Conosco</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/aboutus" className="nav-link">Sobre Nós</Link>
-            </li>
-          </ul>
-        </nav>
+          <Navbar.Collapse id="basic-navbar-nav">
+            {/* Barra de Pesquisa Centralizada */}
+            <div className="mx-auto my-2 my-lg-0 w-100 search-container">
+              <Form onSubmit={handleSearchSubmit} className="d-flex w-100">
+                <InputGroup>
+                  <Form.Control
+                    type="search"
+                    placeholder="Pesquisar produtos..."
+                    className="search-input"
+                    value={localSearchTerm}
+                    onChange={(e) => setLocalSearchTerm(e.target.value)}
+                    aria-label="Search"
+                  />
+                  <button className="btn-search" type="submit">
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                  </button>
+                </InputGroup>
+              </Form>
+            </div>
+
+            {/* Links da Direita */}
+            <Nav className="ms-auto align-items-center">
+              <Nav.Link as={Link} to="/cadastro" className="text-light">Criar Conta</Nav.Link>
+              <Nav.Link as={Link} to="/login" className="text-light">Entrar</Nav.Link>
+              <Nav.Link as={Link} to="/carrinho" className="text-light position-relative">
+                <FontAwesomeIcon icon={faCartShopping} size="lg" />
+                {itemCount > 0 && (
+                  <span className="cart-badge position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {itemCount}
+                  </span>
+                )}
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+
+      {/* Navbar Inferior: Categorias/Navegação */}
+      <div className="cabeçalho2 bg-green-dark">
+        <Container fluid>
+          <Nav className="justify-content-center flex-wrap">
+            <Nav.Link as={Link} to="/" className="text-light nav-item-custom">Início</Nav.Link>
+            <Nav.Link as={Link} to="/categoria/Grãos" className="text-light nav-item-custom">Grãos</Nav.Link>
+            <Nav.Link as={Link} to="/categoria/Frutas" className="text-light nav-item-custom">Frutas</Nav.Link>
+            <Nav.Link as={Link} to="/categoria/Legumes" className="text-light nav-item-custom">Legumes</Nav.Link>
+            <Nav.Link as={Link} to="/talktous" className="text-light nav-item-custom">Fale Conosco</Nav.Link>
+            <Nav.Link as={Link} to="/aboutus" className="text-light nav-item-custom">Sobre Nós</Nav.Link>
+          </Nav>
+        </Container>
       </div>
-    </div>
+    </header>
   );
 }
 
-export default Header; // Exporta o componente Header
+export default Header;

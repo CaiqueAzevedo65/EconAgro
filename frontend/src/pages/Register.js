@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Container, Row, Col, Form, Button, Card } from "react-bootstrap";
 import "../Styles/Cadastro.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
 
 const Cadastro = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     lastname: "",
@@ -22,119 +23,148 @@ const Cadastro = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Dados do formulário:", formData);
+    // Aqui você adicionaria a lógica de integração com a API
+    navigate('/login');
   };
 
   return (
-    <div className="bform">
-      <div className="form-container">
-        <form onSubmit={handleSubmit}>
-          <div className="form-header">
-            <h1>Cadastre-se</h1>
-            <Link to="/login" id="logincadastro" style={{ textDecoration: 'none' }}>
-              Já tem uma conta? Faça login
-            </Link>
-          </div>
+    <div className="register-page">
+      <Container className="d-flex justify-content-center py-5">
+        <Card className="register-card shadow-lg">
+          <Card.Body className="p-4 p-md-5">
+            <div className="text-center mb-4">
+              <h1 className="fw-bold text-dark">Cadastre-se</h1>
+              <p>
+                Já tem uma conta?{" "}
+                <Link to="/login" className="text-success fw-bold text-decoration-none">
+                  Faça login
+                </Link>
+              </p>
+            </div>
 
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="name">Nome</label>
-              <input
-                id="name"
-                type="text"
-                name="name"
-                placeholder="Digite seu nome"
-                value={formData.name}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="lastname">Sobrenome</label>
-              <input
-                id="lastname"
-                type="text"
-                name="lastname"
-                placeholder="Digite seu sobrenome"
-                value={formData.lastname}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
+            <Form onSubmit={handleSubmit}>
+              <Row>
+                <Col md={6} className="mb-3">
+                  <Form.Group controlId="name">
+                    <Form.Label className="fw-bold">Nome</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="name"
+                      placeholder="Digite seu nome"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="form-input-custom"
+                    />
+                  </Form.Group>
+                </Col>
+                <Col md={6} className="mb-3">
+                  <Form.Group controlId="lastname">
+                    <Form.Label className="fw-bold">Sobrenome</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="lastname"
+                      placeholder="Digite seu sobrenome"
+                      value={formData.lastname}
+                      onChange={handleChange}
+                      required
+                      className="form-input-custom"
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
 
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="email">E-mail</label>
-              <input
-                id="email"
-                type="email"
-                name="email"
-                placeholder="Digite seu e-mail"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="number">Telefone</label>
-              <input
-                id="number"
-                type="tel"
-                name="number"
-                placeholder="Digite seu telefone"
-                value={formData.number}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
+              <Row>
+                <Col md={6} className="mb-3">
+                  <Form.Group controlId="email">
+                    <Form.Label className="fw-bold">E-mail</Form.Label>
+                    <Form.Control
+                      type="email"
+                      name="email"
+                      placeholder="Digite seu e-mail"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="form-input-custom"
+                    />
+                  </Form.Group>
+                </Col>
+                <Col md={6} className="mb-3">
+                  <Form.Group controlId="number">
+                    <Form.Label className="fw-bold">Telefone</Form.Label>
+                    <Form.Control
+                      type="tel"
+                      name="number"
+                      placeholder="Digite seu telefone"
+                      value={formData.number}
+                      onChange={handleChange}
+                      className="form-input-custom"
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
 
-          <div className="form-row">
-            <div className="form-group">
-              <label htmlFor="password">Senha</label>
-              <input
-                id="password"
-                type="password"
-                name="password"
-                placeholder="Digite sua senha"
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="cpassword">Confirmar Senha</label>
-              <input
-                id="cpassword"
-                type="password"
-                name="cpassword"
-                placeholder="Confirme sua senha"
-                value={formData.cpassword}
-                onChange={handleChange}
-              />
-            </div>
-          </div>
+              <Row>
+                <Col md={6} className="mb-3">
+                  <Form.Group controlId="password">
+                    <Form.Label className="fw-bold">Senha</Form.Label>
+                    <Form.Control
+                      type="password"
+                      name="password"
+                      placeholder="Digite sua senha"
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
+                      className="form-input-custom"
+                    />
+                  </Form.Group>
+                </Col>
+                <Col md={6} className="mb-3">
+                  <Form.Group controlId="cpassword">
+                    <Form.Label className="fw-bold">Confirmar Senha</Form.Label>
+                    <Form.Control
+                      type="password"
+                      name="cpassword"
+                      placeholder="Confirme sua senha"
+                      value={formData.cpassword}
+                      onChange={handleChange}
+                      required
+                      className="form-input-custom"
+                    />
+                  </Form.Group>
+                </Col>
+              </Row>
 
-          <div className="gender-group">
-            <label htmlFor="gender-masculino">Gênero:</label>
-            <div className="gender-options">
-              {["Masculino", "Feminino", "Outros", "Prefiro não dizer"].map((gender, index) => (
-                <div key={index}>
-                  <input
-                    type="radio"
-                    id={`gender-${gender.toLowerCase().replace(/\s+/g, '-')}`}
-                    name="gender"
-                    value={gender}
-                    onChange={handleChange}
-                  />
-                  <label htmlFor={`gender-${gender.toLowerCase().replace(/\s+/g, '-')}`}>
-                    {gender}
-                  </label>
+              <Form.Group className="mb-4">
+                <Form.Label className="fw-bold d-block">Gênero:</Form.Label>
+                <div className="d-flex flex-wrap gap-3">
+                  {["Masculino", "Feminino", "Outros", "Prefiro não dizer"].map((gender) => (
+                    <Form.Check
+                      key={gender}
+                      type="radio"
+                      id={`gender-${gender}`}
+                      label={gender}
+                      name="gender"
+                      value={gender}
+                      onChange={handleChange}
+                      checked={formData.gender === gender}
+                      className="custom-radio"
+                    />
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </Form.Group>
 
-          <div className="continue-button">
-            <button type="submit">Continuar</button>
-          </div>
-        </form>
-      </div>
+              <Button 
+                variant="primary" 
+                type="submit" 
+                className="w-100 btn-lg fw-bold text-white custom-btn-primary"
+              >
+                Continuar
+              </Button>
+            </Form>
+          </Card.Body>
+        </Card>
+      </Container>
     </div>
   );
 };

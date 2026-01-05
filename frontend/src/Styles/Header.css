@@ -1,122 +1,78 @@
-/* Reset e variáveis estão definidos no global.css */
+/* Variáveis de cor específicas do Header */
+:root {
+    --header-bg: var(--color-primary);
+    --header-bg-dark: var(--color-secondary);
+}
 
-/* Estilização do cabeçalho */
 .cabeçalho {
     width: 100%;
-    background-color: var(--color-primary);
 }
 
-/* Navbar superior (Criar Conta, Entrar e Carrinho) */
-.cabeçalho3 {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    align-items: center;
-    padding: 5px 0;
-    gap: 15px;
+.bg-green {
+    background-color: var(--header-bg) !important;
 }
 
-.navbar-nav {
-    display: flex;
-    gap: 15px;
-    justify-content: flex-end;
-    margin: 0;
-    padding: 0;
+.bg-green-dark {
+    background-color: var(--header-bg-dark) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.nav-item .nav-link {
-    color: var(--color-light);
-    text-decoration: none;
-    font-size: 14px;
-    white-space: nowrap;
-}
-
-/* Nome do site (EconAgro) */
 .Nome_site {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--color-light);
-    white-space: nowrap;
+    color: white !important;
     text-decoration: none;
+}
+
+.search-container {
+    max-width: 600px;
     padding: 0 15px;
 }
 
-/* Barra de pesquisa */
-.search {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc;
-    background-color: #ffffff;
-    width: 100%;
-    max-width: 600px;
-    border-radius: 20px;
-    padding: 5px 15px;
-    margin: 0 auto;
-}
-
-#searchinput {
-    padding: 10px;
+.search-input {
+    border-radius: 20px 0 0 20px !important;
     border: none;
-    background-color: #ffffff;
-    width: 100%;
-    outline: none;
-    font-size: 16px;
+    padding: 10px 15px;
 }
 
-.search label {
+.btn-search {
+    background-color: white;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    padding: 0 15px;
     color: var(--color-text-light);
-    cursor: pointer;
-    padding-left: 10px;
+    transition: color 0.2s;
 }
 
-/* Navbar inferior (Links de navegação) */
-.cabeçalho2 {
-    width: 100%;
-    padding: 5px 0;
-    background-color: var(--color-primary);
-    margin-top: -5px; /* Reduz o espaço entre a barra de pesquisa e o menu */
+.btn-search:hover {
+    color: var(--color-primary);
 }
 
-.navbar-expand-lg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.nav-item-custom {
+    padding: 10px 15px !important;
+    font-size: 0.95rem;
+    transition: background-color 0.2s;
+    border-radius: 5px;
 }
 
-.navbar-nav.mx-auto {
-    display: flex;
-    gap: 20px;
+.nav-item-custom:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-.nav-item {
-    list-style: none;
+.cart-badge {
+    font-size: 0.7rem;
+    padding: 0.35em 0.65em;
 }
 
-.nav-item .nav-link {
-    color: var(--color-light);
-    text-decoration: none;
-    font-size: 16px;
-}
-
-/* Responsividade */
-@media screen and (max-width: 992px) {
-    .Nome_site {
-        margin-left: 2%;
+/* Ajustes para mobile */
+@media (max-width: 991px) {
+    .search-container {
+        margin: 15px 0;
+        padding: 0;
     }
-    .search {
-        width: 75%;
+    
+    .navbar-collapse {
+        padding-top: 10px;
     }
 }
 
-@media screen and (max-width: 768px) {
-    .Nome_site {
-        font-size: large;
-        margin-left: 2%;
-    }
-    .search {
-        width: 85%;
-    }
-    .navbar-nav {
-        flex-direction: column;
-        align-items: center;
-    }
-}

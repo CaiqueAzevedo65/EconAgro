@@ -98,6 +98,11 @@
     background-color: var(--color-secondary);
 }
 
+.botaofaleco.added {
+    background-color: #28a745;
+    cursor: default;
+}
+
 /* Estados de loading e erro */
 .loading,
 .error,
