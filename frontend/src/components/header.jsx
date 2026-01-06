@@ -44,7 +44,7 @@ function Header() {
         <div className="container mx-auto px-4 flex justify-between items-center">
           <div className="flex space-x-6">
             <span className="flex items-center hover:text-white transition-colors cursor-default">
-              <FontAwesomeIcon icon={faPhone} className="mr-2" /> (11) 99999-9999
+              <FontAwesomeIcon icon={faPhone} className="mr-2" /> (19) 99618-8008
             </span>
             <span className="flex items-center hover:text-white transition-colors cursor-default">
               <FontAwesomeIcon icon={faEnvelope} className="mr-2" /> contato@econagro.com

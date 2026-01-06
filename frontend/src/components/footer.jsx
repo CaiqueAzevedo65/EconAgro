@@ -120,7 +120,7 @@ function Footer() {
               </li>
               <li className="flex items-center">
                 <FontAwesomeIcon icon={faPhone} className="mr-3 text-accent" />
-                <span>(11) 99999-9999</span>
+                <span>(19) 996188008</span>
               </li>
               <li className="flex items-center">
                 <FontAwesomeIcon icon={faEnvelope} className="mr-3 text-accent" />
