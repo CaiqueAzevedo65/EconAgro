@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCart } from '../context/CartContext';
 import { useSearch } from '../context/SearchContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faLeaf, faMagnifyingGlass, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faLeaf, faMagnifyingGlass, faBars, faTimes, faUser, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
   const { cart } = useCart();
@@ -14,7 +14,18 @@ function Header() {
   const router = useRouter();
   const [localSearchTerm, setLocalSearchTerm] = useState('');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  
   const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
+
+  // Detectar scroll para mudar estilo do header
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -27,58 +38,90 @@ function Header() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <header className="w-full shadow-md z-50 relative">
-      {/* Navbar Superior: Logo, Search, Actions */}
-      <nav className="bg-primary text-white py-4 px-6">
-        <div className="container mx-auto flex flex-wrap justify-between items-center">
-          {/* Logo */}
-          <Link href="/" className="flex items-center text-2xl font-bold text-white no-underline hover:text-gray-100 transition-colors">
-            <FontAwesomeIcon icon={faLeaf} className="mr-2" />
-            EconAgro
-          </Link>
+    <div className="flex flex-col w-full z-50">
+      {/* Top Bar - Informações e Contato */}
+      <div className="bg-green-900 text-green-100 text-xs py-2 hidden md:block">
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <div className="flex space-x-6">
+            <span className="flex items-center hover:text-white transition-colors cursor-default">
+              <FontAwesomeIcon icon={faPhone} className="mr-2" /> (11) 99999-9999
+            </span>
+            <span className="flex items-center hover:text-white transition-colors cursor-default">
+              <FontAwesomeIcon icon={faEnvelope} className="mr-2" /> contato@econagro.com
+            </span>
+          </div>
+          <div className="font-medium tracking-wide">
+            🌱 Frete Grátis para todo o Brasil em compras acima de R$ 200
+          </div>
+        </div>
+      </div>
 
-          {/* Mobile Menu Button */}
-          <button 
-            className="lg:hidden text-white focus:outline-none"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} size="lg" />
-          </button>
+      {/* Main Header - Sticky */}
+      <header className={`w-full transition-all duration-300 ${isScrolled ? 'sticky top-0 shadow-lg bg-primary/95 backdrop-blur-sm py-2' : 'bg-primary py-4 relative'}`}>
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center">
+            {/* Logo */}
+            <Link href="/" className="flex items-center text-2xl md:text-3xl font-bold text-white no-underline hover:text-green-100 transition-colors group">
+              <div className="bg-white text-primary rounded-full w-10 h-10 flex items-center justify-center mr-3 shadow-md group-hover:rotate-12 transition-transform duration-300">
+                <FontAwesomeIcon icon={faLeaf} />
+              </div>
+              <span>EconAgro</span>
+            </Link>
 
-          {/* Desktop Search & Actions */}
-          <div className="hidden lg:flex flex-1 items-center justify-between ml-8">
-            {/* Barra de Pesquisa */}
-            <form onSubmit={handleSearchSubmit} className="flex-1 max-w-xl mx-auto px-4">
-              <div className="relative flex items-center w-full">
+            {/* Mobile Actions (Cart + Menu) */}
+            <div className="flex items-center lg:hidden space-x-4">
+              <Link href="/carrinho" className="text-white relative p-2">
+                <FontAwesomeIcon icon={faCartShopping} size="lg" />
+                {itemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-accent text-green-900 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
+                    {itemCount}
+                  </span>
+                )}
+              </Link>
+              <button 
+                className="text-white focus:outline-none p-2"
+                onClick={toggleMenu}
+                aria-label="Toggle menu"
+              >
+                <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} size="lg" />
+              </button>
+            </div>
+
+            {/* Desktop Search */}
+            <div className="hidden lg:block flex-1 max-w-xl mx-8">
+              <form onSubmit={handleSearchSubmit} className="relative group">
                 <input
                   type="search"
-                  placeholder="Pesquisar produtos..."
-                  className="w-full py-2 px-4 pr-10 rounded-full text-dark bg-white focus:outline-none focus:ring-2 focus:ring-accent border-none"
+                  placeholder="O que você procura hoje?"
+                  className="w-full py-3 px-6 pr-12 rounded-full text-dark bg-white/90 focus:bg-white focus:outline-none focus:ring-2 focus:ring-accent border-none shadow-inner transition-all placeholder-gray-500"
                   value={localSearchTerm}
                   onChange={(e) => setLocalSearchTerm(e.target.value)}
                 />
                 <button 
                   type="submit"
-                  className="absolute right-0 top-0 bottom-0 px-4 text-primary hover:text-secondary transition-colors bg-transparent border-none cursor-pointer flex items-center justify-center"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-green-700 transition-colors shadow-sm"
                 >
                   <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
-              </div>
-            </form>
+              </form>
+            </div>
 
-            {/* Links da Direita */}
-            <div className="flex items-center space-x-6 ml-4">
-              <Link href="/cadastro" className="text-white hover:text-gray-200 font-medium no-underline">
-                Criar Conta
-              </Link>
-              <Link href="/login" className="text-white hover:text-gray-200 font-medium no-underline">
-                Entrar
-              </Link>
-              <Link href="/carrinho" className="text-white hover:text-gray-200 relative no-underline flex items-center">
-                <FontAwesomeIcon icon={faCartShopping} size="lg" />
+            {/* Desktop Actions */}
+            <div className="hidden lg:flex items-center space-x-6">
+              <div className="flex items-center space-x-2 text-white/90">
+                <Link href="/login" className="hover:text-white font-medium transition-colors py-2 px-4 rounded-full hover:bg-white/10">
+                  Entrar
+                </Link>
+                <span className="text-white/40">|</span>
+                <Link href="/cadastro" className="bg-white text-primary hover:bg-accent hover:text-green-900 font-bold py-2 px-6 rounded-full transition-all shadow-md transform hover:-translate-y-0.5">
+                  Criar Conta
+                </Link>
+              </div>
+
+              <Link href="/carrinho" className="group flex items-center text-white hover:text-accent transition-colors relative no-underline bg-white/10 p-3 rounded-full hover:bg-white/20">
+                <FontAwesomeIcon icon={faCartShopping} className="text-xl" />
                 {itemCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-error text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 bg-accent text-green-900 text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
                     {itemCount}
                   </span>
                 )}
@@ -87,69 +130,85 @@ function Header() {
           </div>
         </div>
 
-        {/* Mobile Menu Content */}
-        {isMenuOpen && (
-          <div className="lg:hidden mt-4 w-full border-t border-primary-light pt-4">
-            <form onSubmit={handleSearchSubmit} className="mb-4">
-              <div className="relative flex items-center">
-                <input
-                  type="search"
-                  placeholder="Pesquisar produtos..."
-                  className="w-full py-2 px-4 rounded-full text-dark focus:outline-none focus:ring-2 focus:ring-accent border-none"
-                  value={localSearchTerm}
-                  onChange={(e) => setLocalSearchTerm(e.target.value)}
-                />
-                <button 
-                  type="submit"
-                  className="absolute right-2 top-0 bottom-0 text-primary flex items-center justify-center bg-transparent border-none"
-                >
-                  <FontAwesomeIcon icon={faMagnifyingGlass} />
-                </button>
-              </div>
+        {/* Mobile Search & Menu Overlay */}
+        <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className="px-4 pb-6 pt-2 bg-primary space-y-4 shadow-xl border-t border-white/10">
+            <form onSubmit={handleSearchSubmit} className="relative">
+              <input
+                type="search"
+                placeholder="Pesquisar produtos..."
+                className="w-full py-3 px-5 pr-12 rounded-full text-dark bg-white focus:outline-none focus:ring-2 focus:ring-accent shadow-inner"
+                value={localSearchTerm}
+                onChange={(e) => setLocalSearchTerm(e.target.value)}
+              />
+              <button 
+                type="submit"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-primary p-2"
+              >
+                <FontAwesomeIcon icon={faMagnifyingGlass} />
+              </button>
             </form>
-            <div className="flex flex-col space-y-3">
-              <Link href="/cadastro" className="text-white hover:text-gray-200 font-medium no-underline block py-2 border-b border-primary-light" onClick={() => setIsMenuOpen(false)}>
-                Criar Conta
-              </Link>
-              <Link href="/login" className="text-white hover:text-gray-200 font-medium no-underline block py-2 border-b border-primary-light" onClick={() => setIsMenuOpen(false)}>
+            
+            <div className="grid grid-cols-2 gap-3 pt-2">
+              <Link href="/login" className="text-center py-3 rounded-lg bg-green-800 text-white font-medium hover:bg-green-900" onClick={() => setIsMenuOpen(false)}>
                 Entrar
               </Link>
-              <Link href="/carrinho" className="text-white hover:text-gray-200 flex items-center no-underline block py-2" onClick={() => setIsMenuOpen(false)}>
-                <FontAwesomeIcon icon={faCartShopping} className="mr-2" />
-                Carrinho ({itemCount})
+              <Link href="/cadastro" className="text-center py-3 rounded-lg bg-white text-primary font-bold hover:bg-gray-100" onClick={() => setIsMenuOpen(false)}>
+                Criar Conta
               </Link>
             </div>
-          </div>
-        )}
-      </nav>
 
-      {/* Navbar Inferior: Categorias/Navegação */}
-      <div className="bg-secondary text-white py-2 shadow-inner">
-        <div className="container mx-auto overflow-x-auto">
-          <nav className={`flex flex-col lg:flex-row lg:justify-center items-start lg:items-center ${isMenuOpen ? 'flex' : 'hidden lg:flex'}`}>
-            <Link href="/" className="px-4 py-2 hover:bg-primary rounded transition-colors font-medium no-underline text-white whitespace-nowrap block w-full lg:w-auto text-left lg:text-center">
-              Início
-            </Link>
-            <Link href="/categoria/Grãos" className="px-4 py-2 hover:bg-primary rounded transition-colors font-medium no-underline text-white whitespace-nowrap block w-full lg:w-auto text-left lg:text-center">
-              Grãos
-            </Link>
-            <Link href="/categoria/Frutas" className="px-4 py-2 hover:bg-primary rounded transition-colors font-medium no-underline text-white whitespace-nowrap block w-full lg:w-auto text-left lg:text-center">
-              Frutas
-            </Link>
-            <Link href="/categoria/Legumes" className="px-4 py-2 hover:bg-primary rounded transition-colors font-medium no-underline text-white whitespace-nowrap block w-full lg:w-auto text-left lg:text-center">
-              Legumes
-            </Link>
-            <Link href="/talktous" className="px-4 py-2 hover:bg-primary rounded transition-colors font-medium no-underline text-white whitespace-nowrap block w-full lg:w-auto text-left lg:text-center">
-              Fale Conosco
-            </Link>
-            <Link href="/aboutus" className="px-4 py-2 hover:bg-primary rounded transition-colors font-medium no-underline text-white whitespace-nowrap block w-full lg:w-auto text-left lg:text-center">
-              Sobre Nós
-            </Link>
+            <nav className="flex flex-col space-y-1 pt-2">
+              <h3 className="text-white/50 text-xs font-bold uppercase tracking-wider mb-2 px-2">Navegação</h3>
+              <MobileNavLink href="/" onClick={() => setIsMenuOpen(false)}>Início</MobileNavLink>
+              <MobileNavLink href="/categoria/Grãos" onClick={() => setIsMenuOpen(false)}>Grãos</MobileNavLink>
+              <MobileNavLink href="/categoria/Frutas" onClick={() => setIsMenuOpen(false)}>Frutas</MobileNavLink>
+              <MobileNavLink href="/categoria/Legumes" onClick={() => setIsMenuOpen(false)}>Legumes</MobileNavLink>
+              <MobileNavLink href="/categoria/Verduras" onClick={() => setIsMenuOpen(false)}>Verduras</MobileNavLink>
+              <MobileNavLink href="/talktous" onClick={() => setIsMenuOpen(false)}>Fale Conosco</MobileNavLink>
+              <MobileNavLink href="/aboutus" onClick={() => setIsMenuOpen(false)}>Sobre Nós</MobileNavLink>
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      {/* Navbar Inferior (Desktop Only) */}
+      <div className="hidden lg:block bg-secondary shadow-md z-40 relative">
+        <div className="container mx-auto">
+          <nav className="flex justify-center">
+            <NavLink href="/">Início</NavLink>
+            <NavLink href="/categoria/Grãos">Grãos</NavLink>
+            <NavLink href="/categoria/Frutas">Frutas</NavLink>
+            <NavLink href="/categoria/Legumes">Legumes</NavLink>
+            <NavLink href="/categoria/Verduras">Verduras</NavLink>
+            <NavLink href="/talktous">Fale Conosco</NavLink>
+            <NavLink href="/aboutus">Sobre Nós</NavLink>
           </nav>
         </div>
       </div>
-    </header>
+    </div>
   );
 }
+
+// Componentes auxiliares para links
+const NavLink = ({ href, children }) => (
+  <Link 
+    href={href} 
+    className="px-6 py-4 font-medium text-white/90 hover:text-white hover:bg-primary/20 transition-all border-b-2 border-transparent hover:border-accent flex items-center h-full"
+  >
+    {children}
+  </Link>
+);
+
+const MobileNavLink = ({ href, onClick, children }) => (
+  <Link 
+    href={href} 
+    className="px-4 py-3 text-white hover:bg-white/10 rounded-lg transition-colors font-medium flex items-center justify-between group"
+    onClick={onClick}
+  >
+    {children}
+    <span className="text-white/30 group-hover:text-white transition-colors">›</span>
+  </Link>
+);
 
 export default Header;
