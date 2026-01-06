@@ -125,9 +125,9 @@ function Login() {
             </div>
 
             <div className="text-sm">
-              <a href="#" className="font-medium text-primary hover:text-secondary transition-colors">
+              <Link href="/recuperar-senha" className="font-medium text-primary hover:text-secondary transition-colors">
                 Esqueceu a senha?
-              </a>
+              </Link>
             </div>
           </div>
 
