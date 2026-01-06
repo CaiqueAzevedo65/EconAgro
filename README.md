@@ -62,23 +62,6 @@ npm run dev
 ```
 A aplicação estará disponível em `http://localhost:3000`.
 
-## 🔄 Status da Refatoração
-
-- [x] Migração para Next.js (App Router).
-- [x] Substituição do Bootstrap por Tailwind CSS.
-- [x] Centralização da lógica de serviços.
-- [x] Otimização de Imagens (Next/Image).
-- [x] Configuração de rotas dinâmicas.
-
-## 🤝 Como Contribuir
-
-1. Faça um Fork do projeto
-2. Crie uma Branch para sua Feature (`git checkout -b feature/NovaFeature`)
-3. Adicione suas mudanças (`git add .`)
-4. Comite suas mudanças (`git commit -m 'feat: Adiciona nova funcionalidade'`)
-5. Faça o Push da Branch (`git push origin feature/NovaFeature`)
-6. Abra um Pull Request
-
 ## 📄 Licença
 
 Este projeto está sob a licença MIT.
