@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { useCart } from '../../context/CartContext';
 import { useCartLogic } from '../../hooks/useCartLogic';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

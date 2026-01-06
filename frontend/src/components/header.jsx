@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCart } from '../context/CartContext';
 import { useSearch } from '../context/SearchContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartShopping, faLeaf, faMagnifyingGlass, faBars, faTimes, faUser, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faCartShopping, faLeaf, faMagnifyingGlass, faBars, faTimes, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
   const { cart } = useCart();

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import { useState } from "react";
 import MensagemEnviada from "../../components/MensagemEnviada";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPaperPlane, faUser, faCommentAlt } from '@fortawesome/free-solid-svg-icons';

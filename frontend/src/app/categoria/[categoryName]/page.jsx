@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Produtos from '../../../components/Produtos';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
